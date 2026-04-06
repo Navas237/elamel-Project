@@ -1,0 +1,14 @@
+.elmarhel{
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+
+@media (min-width : 740px) {
+    
+    .elmarhel:hover{
+        background-color: rgba(94, 166, 94, 0.8);
+        transform: translateY(-20px);
+    
+    }
+}

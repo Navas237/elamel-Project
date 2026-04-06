@@ -1,0 +1,56 @@
+/* Books.css */
+
+/* Shimmer animation for skeleton */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+ .colfc{
+  color : #2d839b;
+ }
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* RTL Support */
+[dir="rtl"] .line-clamp-2 {
+  text-align: right;
+}
+
+/* Smooth transitions */
+.group:hover .group-hover\:scale-105 {
+  transform: scale(1.05);
+}
+
+/* Ensure consistent card heights */
+.books .grid > div {
+  display: flex;
+  flex-direction: column;
+}
