@@ -69,19 +69,19 @@ function Books() {
 
         {/* Loading skeletons */}
         {isLoading ? (
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3 md:gap-6">
             {Array(10).fill(0).map((_, i) => <BookSkeleton key={i} />)}
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
             <Lottie animationData={lotieError} className="w-48 md:w-64" />
-            <div className="rounded-xl p-6 mt-6 max-w-md border-r-4" style={{ background: '#FEF2F2', borderColor: '#EF4444' }}>
+            <div className="rounded-xl p-6 mt-6 max-w-md border" style={{ background: 'var(--brand-danger-light)', borderColor: 'var(--brand-danger)' }}>
               <h3 className="text-red-700 text-xl font-bold mb-2 text-center">حدث خطأ</h3>
-              <p className="text-red-500 text-center">يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى</p>
+              <p className="text-red-600 text-center">يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى</p>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 md:gap-6">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3 md:gap-6">
             {filteredProducts?.map((value, index) => (
               <BookItem
                 key={value.id}
@@ -101,14 +101,14 @@ function Books() {
           <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
             <div
               className="w-20 h-20 rounded-full flex items-center justify-center mb-5 shadow-lg"
-              style={{ background: 'linear-gradient(135deg,#4EC4BD,#1D7A75)' }}
+              style={{ background: 'var(--gradient-brand)' }}
             >
               <IconBook size={36} color="#fff" strokeWidth={1.5} />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold mb-2 text-center" style={{ color: '#1D7A75' }}>
+            <h3 className="text-xl sm:text-2xl font-bold mb-2 text-center" style={{ color: 'var(--teal-600)' }}>
               لا توجد كتب متاحة حاليًا
             </h3>
-            <p className="text-center" style={{ color: '#6B9E9B' }}>
+            <p className="text-center" style={{ color: 'var(--teal-300)' }}>
               جرّب اختيار مرحلة دراسية أخرى
             </p>
           </div>

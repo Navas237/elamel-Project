@@ -165,7 +165,7 @@ function Cart() {
                                     return (
                                         <div
                                             key={offer.id}
-                                            className={`card-anmtion flex-1 min-w-0 max-w-[124px] md:max-w-[154px] rounded-2xl p-2.5 md:p-3.5 text-center flex flex-col justify-center h-[84px] md:h-[112px] overflow-hidden transition-all duration-300 border ${isActive ? 'bg-gradient-to-r from-[#F6FBFB] to-[#E7F5F3]' : 'bg-white'}`}
+                                            className={`card-anmtion flex-1 min-w-0 max-w-[124px] md:max-w-[154px] rounded-2xl p-2.5 md:p-3.5 text-center flex flex-col justify-center h-[84px] md:h-[112px] overflow-hidden transition duration-300 border ${isActive ? 'bg-gradient-to-r from-[#F6FBFB] to-[#E7F5F3]' : 'bg-white'}`}
                                             style={{ borderColor: isActive ? 'var(--teal-200)' : 'transparent' }}
                                         >
                                             <div className="text-xs md:text-lg font-extrabold leading-none" style={{ color: 'var(--teal-600)' }}>
@@ -268,7 +268,7 @@ function Cart() {
                         <p className="text-xl text-gray-600">العربية فاضية 😢… يلا نضيف كتب دراسية ونظبط مذاكرتك! 📚✏️</p>
                         <Link
                             to="/"
-                            className="text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                            className="text-white font-bold px-8 py-4 rounded-2xl transition duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                             style={{ background: 'var(--color-primary-button)' }}
                         >
                             🛍️ ابدأ التسوق الآن

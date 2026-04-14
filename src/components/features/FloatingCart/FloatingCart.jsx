@@ -26,9 +26,9 @@ function FloatingCart() {
                     <div className="max-w-lg mx-auto pointer-events-auto">
                         <Link
                             to="/cart"
-                            className="flex items-center justify-between px-4 py-3 rounded-2xl hover:scale-[1.02] active:scale-[0.97] transition-all duration-200"
+                            className="flex items-center justify-between px-4 py-3 rounded-2xl hover:scale-[1.02] active:scale-[0.97] transition duration-200"
                             style={{
-                                background: 'linear-gradient(135deg,#4EC4BD,#2E9E98)',
+                                background: 'var(--gradient-brand)',
                                 boxShadow: '0 8px 28px rgba(78,196,189,0.42)',
                             }}
                         >
@@ -39,7 +39,7 @@ function FloatingCart() {
                                     <IconCart size={22} className="text-white" />
                                     <span
                                         className="absolute -top-2 -right-2 text-xs font-extrabold rounded-full w-5 h-5 flex items-center justify-center shadow"
-                                        style={{ background: '#FFD43B', color: '#1A2B35' }}
+                                        style={{ background: 'var(--brand-accent)', color: '#1A2B35' }}
                                     >
                                         {totalItems}
                                     </span>

@@ -15,7 +15,7 @@ export default function InfoNotice({
   return (
     <div
       className={cx(
-        'rounded-lg border-r-4 p-3 sm:p-4 text-right',
+        'rounded-lg border p-3 sm:p-4 text-right',
         toneClasses[tone] || toneClasses.info,
         className
       )}

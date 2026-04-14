@@ -14,14 +14,14 @@ function SelectType() {
             name: 'شرح وأسئلة',
             path: `/sf/${level}/b/${level2}?ty=exam`,
             icon: '📖',
-            gradient: 'from-[#4EC4BD] to-[#2E9E98]'
+            gradient: 'from-[var(--teal-400)] to-[var(--teal-500)]'
         },
         {
             id: 'revision',
             name: 'مراجعة نهائية',
             path: `/sf/${level}/b/${level2}?ty=rev`,
             icon: '🎯',
-            gradient: 'from-[#2E9E98] to-[#1D7A75]'
+            gradient: 'from-[var(--teal-500)] to-[var(--teal-600)]'
         }
     ];
 
@@ -36,13 +36,13 @@ function SelectType() {
                         <Link
                             key={type.id}
                             to={type.path}
-                            className='group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border hover:-translate-y-3'
+                            className='group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition duration-300 overflow-hidden border hover:-translate-y-3'
                             style={{ borderColor: 'var(--color-card-border)' }}
                         >
                             <div className={`absolute inset-0 bg-gradient-to-br ${type.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
 
                             <div className='relative p-8 flex flex-col items-center text-center gap-6'>
-                                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${type.gradient} flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg text-5xl`}>
+                                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${type.gradient} flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition duration-300 shadow-lg text-5xl`}>
                                     {type.icon}
                                 </div>
 
@@ -59,8 +59,8 @@ function SelectType() {
                 </div>
 
                 <div
-                    className='mt-16 rounded-2xl p-8 shadow-inner border-r-8'
-                    style={{ background: 'linear-gradient(135deg,#F8FCFC,#EEF8F7)', borderColor: 'var(--teal-400)' }}
+                    className='mt-16 rounded-2xl p-8 border'
+                    style={{ background: 'var(--color-surface-muted)', borderColor: 'var(--teal-200)' }}
                 >
                     <div className='flex items-center gap-4'>
                         <span className='text-4xl'>📘</span>

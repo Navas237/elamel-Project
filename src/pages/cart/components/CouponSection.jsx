@@ -16,7 +16,7 @@ export default function CouponSection({ couponCode, appliedCouponCode, onCodeCha
                 <span className={`transition-transform duration-300 text-xs ${open ? 'rotate-180' : ''}`}>▼</span>
             </button>
 
-            <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className={`overflow-hidden [transition-property:max-height,opacity,margin] duration-300 ${open ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div
                     className="mx-4 mb-3 rounded-xl border p-4"
                     style={{ background: 'linear-gradient(135deg,#FFFFFF,#F6FBFB)', borderColor: 'var(--color-card-border-strong)' }}

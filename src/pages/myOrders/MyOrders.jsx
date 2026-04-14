@@ -33,8 +33,8 @@ export function MyOrders() {
       {/* ── Page header ───────────────────────────────────── */}
       <div className="text-center mb-8">
         <h1
-          className="text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent inline-block"
-          style={{ backgroundImage: 'linear-gradient(135deg,#4EC4BD,#2E9E98)' }}
+          className="text-3xl md:text-4xl font-extrabold inline-block"
+          style={{ color: 'var(--teal-800)' }}
         >
           طلباتي 🛍️
         </h1>
@@ -45,7 +45,7 @@ export function MyOrders() {
       {orders.length === 0 ? (
         <div
           className="text-center py-16 rounded-2xl border border-dashed"
-          style={{ borderColor: '#4EC4BD', background: '#E6F7F6' }}
+          style={{ borderColor: 'var(--teal-400)', background: 'var(--color-surface-muted)' }}
         >
           <div className="text-6xl mb-4 animate-bounce">📦</div>
           <p className="text-gray-500 text-lg font-semibold">لا يوجد طلبات محفوظة</p>
@@ -65,12 +65,12 @@ export function MyOrders() {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100"
               >
                 {/* Order header */}
                 <div
                   className="px-5 py-3 flex justify-between items-center text-white"
-                  style={{ background: 'linear-gradient(135deg,#4EC4BD,#2E9E98)' }}
+                  style={{ background: 'var(--gradient-brand)' }}
                 >
                   <div className="flex items-center gap-2 font-semibold text-sm">
                     {orderDetils?.phone && (
@@ -96,7 +96,7 @@ export function MyOrders() {
                       {/* Qty badge */}
                       <div
                         className="col-span-2 text-xs font-bold text-center px-2 py-1 rounded-lg whitespace-nowrap"
-                        style={{ background: '#E6F7F6', color: '#2E9E98' }}
+                        style={{ background: 'var(--color-surface-muted)', color: 'var(--teal-500)' }}
                       >
                         {item.quantity} ×
                       </div>
@@ -119,7 +119,7 @@ export function MyOrders() {
                     <span>المجموع</span>
                   </div>
 
-                  <div className="flex justify-between" style={{ color: '#2E9E98' }}>
+                  <div className="flex justify-between" style={{ color: 'var(--teal-500)' }}>
                     <Egp value={`${orderDetils.discount} -`} />
                     <span>الخصم ({discountPct})</span>
                   </div>
@@ -139,7 +139,7 @@ export function MyOrders() {
                   {/* Final total */}
                   <div
                     className="flex justify-between items-center text-white px-4 py-3 rounded-xl font-extrabold text-base mt-1"
-                    style={{ background: 'linear-gradient(135deg,#4EC4BD,#2E9E98)' }}
+                    style={{ background: 'var(--gradient-brand)' }}
                   >
                     <Egp value={finalTotal} className="text-white text-lg" />
                     <span>الإجمالي النهائي</span>

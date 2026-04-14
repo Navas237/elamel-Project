@@ -14,12 +14,12 @@ function Elsafe() {
     بشكل متناسق مع إضافة درجة Gold خفيفة لبعض البطاقات للتمييز 
   */
   const palettes = [
-    { bg: 'linear-gradient(135deg,#4EC4BD,#2E9E98)', hoverBg: 'rgba(78, 196, 189, 0.1)', border: '#4EC4BD' },
-    { bg: 'linear-gradient(135deg,#2E9E98,#1D7A75)', hoverBg: 'rgba(46, 158, 152, 0.1)', border: '#2E9E98' },
-    { bg: 'linear-gradient(135deg,#1D7A75,#135C58)', hoverBg: 'rgba(29, 122, 117, 0.1)', border: '#1D7A75' },
-    { bg: 'linear-gradient(135deg,#66CBBD,#4EC4BD)', hoverBg: 'rgba(102, 203, 189, 0.1)', border: '#66CBBD' },
-    { bg: 'linear-gradient(135deg,#FFD43B,#F5A623)', hoverBg: 'rgba(255, 212, 59, 0.1)',  border: '#FFD43B' },
-    { bg: 'linear-gradient(135deg,#0D4A47,#135C58)', hoverBg: 'rgba(13, 74, 71, 0.1)',    border: '#0D4A47' },
+    { bg: 'linear-gradient(135deg,var(--teal-300),var(--teal-400))', hoverBg: 'rgba(102, 203, 189, 0.1)', border: 'var(--teal-300)' },
+    { bg: 'var(--gradient-brand)', hoverBg: 'rgba(78, 196, 189, 0.1)', border: 'var(--teal-400)' },
+    { bg: 'var(--color-primary-button)', hoverBg: 'rgba(46, 158, 152, 0.1)', border: 'var(--teal-500)' },
+    { bg: 'linear-gradient(135deg,var(--teal-600),var(--teal-700))', hoverBg: 'rgba(29, 122, 117, 0.1)', border: 'var(--teal-600)' },
+    { bg: 'linear-gradient(135deg,var(--teal-700),var(--teal-800))', hoverBg: 'rgba(19, 92, 88, 0.1)',   border: 'var(--teal-700)' },
+    { bg: 'linear-gradient(135deg,var(--teal-800),#093331)', hoverBg: 'rgba(13, 74, 71, 0.1)',    border: 'var(--teal-800)' },
   ];
 
   const stages = {
@@ -59,7 +59,7 @@ function Elsafe() {
             <Link
               key={index}
               to={level === 'sec' && stage.grade === '3' ? `choice/${stage.grade}` : `b/${stage.grade}`}
-              className="group relative self-center bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 border"
+              className="group relative self-center bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden transform hover:-translate-y-2 border"
               style={{ borderColor: 'var(--teal-100)' }}
             >
               {/* Hover Tint Background */}
@@ -108,11 +108,11 @@ function Elsafe() {
           style={{ background: 'linear-gradient(135deg,#FFFFFF,#F6FBFB)', borderColor: 'var(--color-card-border-strong)' }}
         >
           <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg,#4EC4BD,#2E9E98)' }}>
+            <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: 'var(--gradient-brand)' }}>
                <IconBookOpen size={30} color="#fff" />
             </div>
           </div>
-          <p className="text-lg md:text-xl font-bold" style={{ color: '#1D7A75' }}>
+          <p className="text-lg md:text-xl font-bold" style={{ color: 'var(--teal-600)' }}>
             اختر الصف الدراسي للاطلاع على الكتب المتاحة والمواد الدراسية
           </p>
         </div>

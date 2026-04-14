@@ -25,7 +25,7 @@
                                                     <div className={`card-anmtion flex-1 min-w-0 max-w-[120px] md:max-w-[150px] ${isActive ? 'bg-gradient-to-r from-[#e8f4fc] to-[#d4f5f0] rounded-xl ' : ''}`} key={index}>
 
                                                         <div
-                                                            className={`bg-white p-1.5 md:p-3 text-center transition-all duration-300 flex flex-col justify-center h-[80px] md:h-[110px] overflow-hidden ${isActive ? 'bg-gradient-to-r from-[#e8f4fc] to-[#d4f5f0] rounded-xl ' : ''} `}
+                                                            className={`bg-white p-1.5 md:p-3 text-center transition duration-300 flex flex-col justify-center h-[80px] md:h-[110px] overflow-hidden ${isActive ? 'bg-gradient-to-r from-[#e8f4fc] to-[#d4f5f0] rounded-xl ' : ''} `}
                                                         >
                                                             {/* <div className="text-sm md:text-xl mb-0.5">{offer.icon}</div> */}
                                                             <div className="text-xs md:text-lg font-extrabold text-blue-600 leading-none mb-0.5">
@@ -76,7 +76,7 @@
                                             <div key={index} className="grid grid-cols-8 gap-4 p-6 items-center hover:bg-gray-50 transition-colors duration-200">
                                                 <div className="text-center">
                                                     <button
-                                                        className="text-red-500 hover:text-red-700 hover:scale-110 transition-all duration-200 text-3xl"
+                                                        className="text-red-500 hover:text-red-700 hover:scale-110 transition duration-200 text-3xl"
                                                         onClick={() => deletCart(value)}
                                                     >
                                                         <MdDeleteForever />
@@ -95,7 +95,7 @@
                                                     <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-3 py-2">
                                                         <button
                                                             // disabled={value.stoke < value.quantity }
-                                                            className="bg-blue-500 hover:bg-blue-600 text-white w-8 h-8 rounded-full flex gap-1 items-center justify-center font-bold transition-all duration-200 hover:scale-110"
+                                                            className="bg-blue-500 hover:bg-blue-600 text-white w-8 h-8 rounded-full flex gap-1 items-center justify-center font-bold transition duration-200 hover:scale-110"
                                                             onClick={() => changeCount(value.id, "plus")}
                                                         >
                                                             +
@@ -104,7 +104,7 @@
                                                             {value.quantity}
                                                         </span>
                                                         <button
-                                                            className="bg-red-500 hover:bg-red-600 text-white w-8 h-8 rounded-full flex gap-1 items-center justify-center font-bold transition-all duration-200 hover:scale-110"
+                                                            className="bg-red-500 hover:bg-red-600 text-white w-8 h-8 rounded-full flex gap-1 items-center justify-center font-bold transition duration-200 hover:scale-110"
                                                             onClick={() => changeCount(value.id, "menus")}
                                                         >
                                                             -
@@ -184,7 +184,7 @@
                                                             <span className={`transition-transform duration-300 text-xs ${showCoupon ? 'rotate-180' : ''}`}>▼</span>
                                                         </button>
 
-                                                        <div className={`overflow-hidden transition-all duration-400 ease-in-out ${showCoupon ? 'max-h-[200px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
+                                                        <div className={`overflow-hidden [transition-property:max-height,opacity,margin] duration-400 ease-in-out ${showCoupon ? 'max-h-[200px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
                                                             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
                                                                 <div className="flex gap-3 items-center max-w-md mx-auto" dir="ltr">
                                                                     <input
@@ -194,12 +194,12 @@
                                                                         placeholder="ادخل كود الخصم"
                                                                         dir="rtl"
                                                                         disabled={!!appliedCouponCode}
-                                                                        className="flex-1 px-5 py-3 rounded-xl border-2 border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none text-sm font-medium text-gray-700 placeholder-gray-400 transition-all duration-200 bg-white disabled:opacity-50"
+                                                                        className="flex-1 px-5 py-3 rounded-xl border-2 border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none text-sm font-medium text-gray-700 placeholder-gray-400 transition duration-200 bg-white disabled:opacity-50"
                                                                     />
                                                                     <button
                                                                         onClick={handleApplyCoupon}
                                                                         disabled={!!appliedCouponCode}
-                                                                        className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 whitespace-nowrap disabled:opacity-50"
+                                                                        className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition duration-200 transform hover:scale-105 active:scale-95 whitespace-nowrap disabled:opacity-50"
                                                                     >
                                                                         تطبيق
                                                                     </button>
@@ -208,7 +208,7 @@
                                                                     <div className="flex items-center justify-center gap-3 mt-2">
                                                                         <button
                                                                             onClick={() => { setAppliedCouponCode(''); setCouponCode(''); localStorage.removeItem('appliedCouponCode'); }}
-                                                                            className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded-lg transition-all duration-200 cursor-pointer"
+                                                                            className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded-lg transition duration-200 cursor-pointer"
                                                                         >
                                                                             حذف الكوبون
                                                                         </button>
@@ -278,7 +278,7 @@
                                 {ProductData?.map((value, index) => (
                                     <div
                                         key={index}
-                                        className="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300"
+                                        className="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300"
                                     >
                                         <div className="flex flex-col  p-1 gap-1">
                                             {/* Header: Delete Button and Title */}
@@ -317,7 +317,7 @@
                                                        {/* Quantity Controls */}
                                                 <div className="flex items-center gap-2 bg-white rounded-full px-0.5 py-0.5 box-shadow-sm border border-gray-200 mb-1">
                                                     <button
-                                                        className="bg-blue-50 hover:bg-blue-500 hover:text-white text-blue-600 w-7 h-7 rounded-full flex items-center justify-center font-bold transition-all text-sm"
+                                                        className="bg-blue-50 hover:bg-blue-500 hover:text-white text-blue-600 w-7 h-7 rounded-full flex items-center justify-center font-bold transition text-sm"
                                                         onClick={() => changeCount(value.id, "plus")}
                                                     >
                                                         +
@@ -326,7 +326,7 @@
                                                         {value.quantity}
                                                     </span>
                                                     <button
-                                                        className="bg-red-50 hover:bg-red-500 hover:text-white text-red-600 w-7 h-7 rounded-full flex items-center justify-center font-bold transition-all text-sm"
+                                                        className="bg-red-50 hover:bg-red-500 hover:text-white text-red-600 w-7 h-7 rounded-full flex items-center justify-center font-bold transition text-sm"
                                                         onClick={() => changeCount(value.id, "menus")}
                                                     >
                                                         -
@@ -389,7 +389,7 @@
                                                                 <span className={`transition-transform duration-300 text-xs ${showCoupon ? 'rotate-180' : ''}`}>▼</span>
                                                             </button>
 
-                                                            <div className={`overflow-hidden transition-all duration-400 ease-in-out ${showCoupon ? 'max-h-[200px] opacity-100 mt-3' : 'max-h-0 opacity-0 mt-0'}`}>
+                                                            <div className={`overflow-hidden [transition-property:max-height,opacity,margin] duration-400 ease-in-out ${showCoupon ? 'max-h-[200px] opacity-100 mt-3' : 'max-h-0 opacity-0 mt-0'}`}>
                                                                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-3 border border-blue-100">
                                                                     <div className="flex gap-2 items-center" dir="ltr">
                                                                         <input
@@ -399,12 +399,12 @@
                                                                             placeholder="ادخل كود الخصم"
                                                                             dir="rtl"
                                                                             disabled={!!appliedCouponCode}
-                                                                            className="flex-1 px-4 py-2.5 rounded-lg border-2 border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none text-sm font-medium text-gray-700 placeholder-gray-400 transition-all duration-200 bg-white disabled:opacity-50"
+                                                                            className="flex-1 px-4 py-2.5 rounded-lg border-2 border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none text-sm font-medium text-gray-700 placeholder-gray-400 transition duration-200 bg-white disabled:opacity-50"
                                                                         />
                                                                         <button
                                                                             onClick={handleApplyCoupon}
                                                                             disabled={!!appliedCouponCode}
-                                                                            className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 whitespace-nowrap disabled:opacity-50"
+                                                                            className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition duration-200 transform hover:scale-105 active:scale-95 whitespace-nowrap disabled:opacity-50"
                                                                         >
                                                                             تطبيق
                                                                         </button>
@@ -413,7 +413,7 @@
                                                                         <div className="flex items-center justify-between gap-2 mt-2">
                                                                             <button
                                                                                 onClick={() => { setAppliedCouponCode(''); setCouponCode(''); localStorage.removeItem('appliedCouponCode'); }}
-                                                                                className="px-2.5 py-1 bg-red-500 hover:bg-red-600 text-white text-[10px] font-bold rounded-lg transition-all duration-200 cursor-pointer"
+                                                                                className="px-2.5 py-1 bg-red-500 hover:bg-red-600 text-white text-[10px] font-bold rounded-lg transition duration-200 cursor-pointer"
                                                                             >
                                                                                 حذف
                                                                             </button>
@@ -479,7 +479,7 @@
                                 <button
                                     onClick={handleCheckout}
                                     disabled={Productloading || isCheckingOut}
-                                    className="block w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-xl py-4 rounded-2xl text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
+                                    className="block w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-xl py-4 rounded-2xl text-center shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 disabled:opacity-50"
                                 >
                                     {isCheckingOut ? <span>جاري التحقق...</span> : <span className=' flex gap-2 justify-center items-center'> <IoArrowBackOutline /> ادخل بيانات التوصيل </span>}
                                 </button>
@@ -495,7 +495,7 @@
                                 <h4 className="text-xl text-gray-600">العربية فاضية 😢… يلا نضيف كتب دراسية ونظبط مذاكرتك! 📚✏️</h4>
                                 <Link
                                     to={'/'}
-                                    className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                                    className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-2xl transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                                 >
                                     🛍️ ابدأ التسوق الآن
                                 </Link>

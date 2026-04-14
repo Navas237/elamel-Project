@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 /* ============================================================
@@ -10,8 +11,7 @@
    ============================================================ */
 
 /* ── Google Fonts — Cairo ─────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
-
+/* Font imported at the top of the file to fix PostCSS order error */
 /* ── Design Tokens ────────────────────────────────────────── */
 :root {
 

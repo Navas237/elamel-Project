@@ -27,7 +27,7 @@ export default function IconButton({
   return (
     <button
       className={cx(
-        'inline-flex items-center justify-center rounded-full transition-all duration-300 active:scale-95',
+        'inline-flex items-center justify-center rounded-full transition duration-300 active:scale-95',
         sizes[size] || sizes.md,
         variants[variant] || variants.ghost,
         className

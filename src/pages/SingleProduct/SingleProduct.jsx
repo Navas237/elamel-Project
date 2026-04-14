@@ -11,8 +11,8 @@ import {
 } from '../../lib/icons';
 
 /* ── Brand tokens ─────────────────────────────────────────── */
-const TEAL    = 'linear-gradient(135deg,#4EC4BD,#2E9E98)';
-const GOLD_BG = { background: 'linear-gradient(135deg,#FFD43B,#F0B800)' };
+const TEAL    = 'var(--gradient-brand)';
+const GOLD_BG = { background: 'linear-gradient(135deg,var(--brand-accent),var(--brand-accent-dark))' };
 
 function SingleProduct() {
   useEffect(() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); }, []);
@@ -73,14 +73,14 @@ function SingleProduct() {
             <>
               <img
                 src={productData.image}
-                alt={productData.name}
+                alt={`${productData.company || 'كتاب'} - ${productData.name || ''}`}
                 onLoad={() => setImgLoaded(true)}
-                className={`w-full h-full object-cover transition-all duration-500 ${imgLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
+                className={`w-full h-full object-cover transition duration-500 ${imgLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
               />
               {!imgLoaded && <div className="absolute inset-0 skeleton" />}
             </>
           ) : (
-            <div className="flex items-center justify-center h-full" style={{ color: '#4EC4BD' }}>
+            <div className="flex items-center justify-center h-full" style={{ color: 'var(--teal-400)' }}>
               <IconBook size={72} strokeWidth={1} />
             </div>
           )}
@@ -112,10 +112,10 @@ function SingleProduct() {
           <div className="rounded-xl md:rounded-2xl p-4 bg-gray-50 flex flex-col items-end gap-2">
             {/* Current price */}
             <div className="flex items-baseline gap-2">
-              <span className="font-black text-3xl md:text-4xl" style={{ color: '#2E9E98' }}>
+              <span className="font-black text-3xl md:text-4xl" style={{ color: 'var(--teal-500)' }}>
                 {priceAfter ?? '—'}
               </span>
-              <span className="font-bold text-xl" style={{ color: '#2E9E98' }}>ج</span>
+              <span className="font-bold text-xl" style={{ color: 'var(--teal-500)' }}>ج</span>
               <span className="text-gray-500 text-lg">السعر</span>
             </div>
 
@@ -140,7 +140,7 @@ function SingleProduct() {
           <motion.button
             whileTap={!isLoading && !isOutOfStock && !showFly ? { scale: 0.95 } : {}}
             whileHover={!isLoading && !isOutOfStock && !showFly ? { scale: 1.02 } : {}}
-            className={`w-full h-14 rounded-xl md:rounded-2xl font-extrabold text-base md:text-lg flex items-center justify-center gap-2.5 transition-all duration-200 ${
+            className={`w-full h-14 rounded-xl md:rounded-2xl font-extrabold text-base md:text-lg flex items-center justify-center gap-2.5 transition duration-200 ${
               isOutOfStock
                 ? 'bg-gray-100 text-gray-400 cursor-default'
                 : (isLoading || showFly)
@@ -180,8 +180,8 @@ function SingleProduct() {
               transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
               className="pointer-events-none"
             >
-              <div className="bg-white p-2.5 rounded-full shadow-xl border-2" style={{ borderColor: '#4EC4BD' }}>
-                <IconBook size={24} style={{ color: '#4EC4BD' }} />
+              <div className="bg-white p-2.5 rounded-full shadow-xl border-2" style={{ borderColor: 'var(--teal-400)' }}>
+                <IconBook size={24} style={{ color: 'var(--teal-400)' }} />
               </div>
             </motion.div>
           )}

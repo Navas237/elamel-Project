@@ -19,14 +19,14 @@ const languages = [
     name: 'عـــربي',
     path: 'books/عربي',
     icon: BookIcon,
-    gradient: 'from-[#4EC4BD] to-[#2E9E98]'
+    gradient: 'from-[var(--teal-400)] to-[var(--teal-500)]'
   },
   {
     id: 'languages',
     name: 'لغــــات',
     path: 'books/لغات',
     icon: GlobeIcon,
-    gradient: 'from-[#2E9E98] to-[#1D7A75]'
+    gradient: 'from-[var(--teal-500)] to-[var(--teal-600)]'
   }
 ];
 
@@ -44,22 +44,22 @@ function SelectLang() {
               <Link
                 key={lang.id}
                 to={lang.path}
-                className='group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border hover:-translate-y-2'
+                className='group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden border hover:-translate-y-2'
                 style={{ borderColor: 'var(--color-card-border)' }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${lang.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
 
                 <div className='relative p-4 flex flex-col items-center gap-6'>
-                  <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${lang.gradient} flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
+                  <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${lang.gradient} flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-6 transition duration-300 shadow-lg`}>
                     <lang.icon />
                   </div>
 
-                  <h2 className='text-3xl md:text-4xl font-bold text-gray-800 text-center group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#2E9E98] group-hover:to-[#135C58] transition-all duration-300'>
+                  <h2 className='text-3xl md:text-4xl font-bold text-gray-800 text-center group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[var(--teal-500)] group-hover:to-[var(--teal-700)] transition duration-300'>
                     {lang.name}
                   </h2>
 
-                  <div className='opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all duration-300'>
-                    <svg className='w-8 h-8 text-[#2E9E98]' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                  <div className='opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition duration-300'>
+                    <svg className='w-8 h-8 text-[var(--teal-500)]' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                       <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={3} d='M15 19l-7-7 7-7' />
                     </svg>
                   </div>
@@ -71,7 +71,7 @@ function SelectLang() {
           })}
         </div>
 
-        <div className='mt-12 bg-gradient-to-r from-amber-50 to-orange-50 border-r-4 border-amber-500 rounded-xl p-6 shadow-md'>
+        <div className='mt-12 bg-amber-50 border border-amber-200 rounded-xl p-6 shadow-sm'>
           <div className='flex items-start gap-4'>
             <div className='flex-shrink-0 w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center'>
               <span className='text-white text-xl font-bold'>!</span>

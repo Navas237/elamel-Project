@@ -18,7 +18,7 @@ export default function OrderSummaryCard({
                 <span className='text-lg sm:text-2xl'>ملخص الطلب</span>
             </h2>
 
-            <div className='rounded-xl sm:rounded-2xl p-4 sm:p-6 space-y-3 sm:space-y-4 border-2' style={{background:'linear-gradient(135deg,#F0FBFA,#CCEEE9)',borderColor:'#99DDD3'}}>
+            <div className='rounded-xl sm:rounded-2xl p-4 sm:p-6 space-y-3 sm:space-y-4 border-2' style={{background:'linear-gradient(135deg,var(--teal-50),var(--teal-100))',borderColor:'var(--teal-200)'}}>
                 <div className='flex justify-between items-center pb-2 sm:pb-3 border-b-2 border-gray-200'>
                     <div className='flex items-center text-gray-700 gap-1 sm:gap-2'>
                         <span className='text-sm sm:text-base font-bold '>جنيه</span>
@@ -66,7 +66,7 @@ export default function OrderSummaryCard({
                 )}
 
                 <div className='flex justify-between items-center pt-2 sm:pt-4'>
-                    <div className='flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium' style={{color:'#2E9E98',background:'#F0FBFA'}}>
+                    <div className='flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium' style={{color:'var(--teal-500)',background:'var(--teal-50)'}}>
                         <span className='text-lg sm:text-2xl font-bold '>جنيه</span>
                         <span className='text-xl sm:text-3xl font-black '>{Math.round(Number(finalNetTotal))}</span>
                     </div>
@@ -77,12 +77,12 @@ export default function OrderSummaryCard({
             <button
                 disabled={isCheckingOut}
                 type="submit"
-                className={`w-full mt-6 sm:mt-8 py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl text-white font-bold text-lg sm:text-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3
+                className={`w-full mt-6 sm:mt-8 py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl text-white font-bold text-lg sm:text-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 sm:gap-3
           ${isCheckingOut
                         ? 'bg-gray-400 cursor-not-allowed'
                         : 'text-white hover:shadow-xl hover:-translate-y-1'
                     } rounded-xl sm:rounded-2xl`}
-                style={{background:'linear-gradient(135deg,#4EC4BD,#1D7A75)'}}
+                style={{background:'var(--gradient-brand)'}}
             >
                 {isCheckingOut ? (
                     <>

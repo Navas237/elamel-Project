@@ -23,7 +23,7 @@ export default function DeliveryAddressForm({
     return (
         <div className='mb-6 sm:mb-8'>
             <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 flex items-center gap-2'>
-                <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white' style={{background:'linear-gradient(135deg,#2E9E98,#1D7A75)'}}>2</span>
+                <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white' style={{background:'var(--color-primary-button)'}}>2</span>
                 <span className='text-lg sm:text-2xl'>عنوان التوصيل</span>
             </h2>
 

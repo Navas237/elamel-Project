@@ -64,7 +64,7 @@ const OffersModal = ({ isOpen, onClose }) => {
                                         initial={{ x: 50, opacity: 0 }}
                                         animate={{ x: 0, opacity: 1 }}
                                         transition={{ delay: 0.1 * index + 0.3 }}
-                                        className="group flex items-center justify-between rounded-xl border p-2.5 transition-all duration-300 hover:bg-white hover:shadow-md"
+                                        className="group flex items-center justify-between rounded-xl border p-2.5 transition duration-300 hover:bg-white hover:shadow-md"
                                         style={{ background: 'var(--color-surface-muted)', borderColor: 'var(--color-card-border)' }}
                                     >
                                         <div className="flex flex-row-reverse items-center gap-3">
@@ -101,7 +101,7 @@ const OffersModal = ({ isOpen, onClose }) => {
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={onClose}
-                                className="mt-5 w-full rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 py-3 text-sm font-bold text-white shadow-xl transition-all hover:from-black hover:to-black"
+                                className="mt-5 w-full rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 py-3 text-sm font-bold text-white shadow-xl transition hover:from-black hover:to-black"
                             >
                                 تصفح الكتب الآن
                             </motion.button>

@@ -10,9 +10,9 @@ export const normalizeArabicNumbers = (input) => {
 export const customSelectStyles = {
     control: (base, state) => ({
         ...base, borderRadius: '12px', padding: '5px', fontSize: '18px',
-        backgroundColor: '#f8f9fa', border: state.isFocused ? '1px solid #4EC4BD' : '1px solid #e1e4e8',
+        backgroundColor: '#f8f9fa', border: state.isFocused ? '1px solid var(--teal-400)' : '1px solid #e1e4e8',
         boxShadow: state.isFocused ? '0 4px 12px rgba(78, 196, 189, 0.15)' : 'none',
-        '&:hover': { borderColor: state.isFocused ? '#4EC4BD' : '#cbd5e1', backgroundColor: '#fff', },
+        '&:hover': { borderColor: state.isFocused ? 'var(--teal-400)' : '#cbd5e1', backgroundColor: '#fff', },
         transition: 'all 0.3s ease', textAlign: 'right', direction: 'rtl'
     }),
     placeholder: (base) => ({ ...base, textAlign: 'right', fontSize: '16px', color: '#64748b' }),
@@ -20,9 +20,9 @@ export const customSelectStyles = {
     menu: (base) => ({ ...base, borderRadius: '12px', overflow: 'hidden', zIndex: 100 }),
     option: (base, state) => ({
         ...base, textAlign: 'right', fontSize: '16px',
-        backgroundColor: state.isSelected ? '#4EC4BD' : state.isFocused ? '#F0FBFA' : '#fff',
+        backgroundColor: state.isSelected ? 'var(--teal-400)' : state.isFocused ? 'var(--teal-50)' : '#fff',
         color: state.isSelected ? '#fff' : '#334155',
-        '&:active': { backgroundColor: '#2E9E98', }
+        '&:active': { backgroundColor: 'var(--teal-500)', }
     }),
     container: (base) => ({ ...base, marginBottom: '24px' })
 };
@@ -36,6 +36,6 @@ export const textFieldStyle = {
     },
     '& .MuiInputLabel-root': {
         fontSize: '16px', fontWeight: '500',
-        '&.Mui-focused': { color: '#4EC4BD', },
+        '&.Mui-focused': { color: 'var(--teal-400)', },
     },
 };

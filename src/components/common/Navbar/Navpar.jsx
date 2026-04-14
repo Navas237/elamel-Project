@@ -60,7 +60,7 @@ function Navpar() {
     { label: 'فيسبوك',   href: 'https://www.facebook.com/Amaleducationalstore?locale=ar_AR', icon: IconFacebook },
   ];
 
-  const navCls = 'flex items-center gap-1.5 text-white font-semibold text-[15px] transition-all duration-200 hover:text-yellow-300 hover:-translate-y-0.5';
+  const navCls = 'flex items-center gap-1.5 text-white font-semibold text-[15px] transition duration-200 hover:text-yellow-300 hover:-translate-y-0.5';
 
   return (
     <>
@@ -72,10 +72,11 @@ function Navpar() {
           <div ref={inputRef} className="relative flex items-center">
             {!serchstat ? (
               <button
+                aria-label="البحث"
                 onClick={() => setserchstat(true)}
-                className="text-white transition-all duration-200 hover:text-yellow-300 hover:scale-110 p-1"
-                aria-label="بحث"
+                className="text-white transition duration-200 hover:text-yellow-300 hover:scale-110 p-1"
               >
+              
                 <IconSearch size={22} />
               </button>
             ) : (
@@ -98,7 +99,7 @@ function Navpar() {
                     e.currentTarget.style.boxShadow =
                       '0 0 0 3px rgba(255, 212, 59, 0.18), 0 8px 18px rgba(13, 74, 71, 0.12)'
                   }}
-                  className="w-44 md:w-64 px-4 py-1.5 rounded-full text-sm outline-none shadow-md bg-white transition-all duration-200"
+                  className="w-44 md:w-64 px-4 py-1.5 rounded-full text-sm outline-none shadow-md bg-white transition duration-200"
                   style={{ boxShadow: '0 0 0 3px rgba(255, 212, 59, 0.18), 0 8px 18px rgba(13, 74, 71, 0.12)' }}
                 />
               </motion.div>
@@ -161,7 +162,7 @@ function Navpar() {
           {/* MOBILE — Hamburger */}
           <button
             onClick={() => setmenustat(!menustat)}
-            className="sm:hidden text-white transition-all duration-200 hover:text-yellow-300"
+            className="sm:hidden text-white transition duration-200 hover:text-yellow-300"
             aria-label="القائمة"
           >
             <IconMenu size={26} />
@@ -187,7 +188,7 @@ function Navpar() {
             >
               {/* Header */}
               <div className="flex justify-between items-center p-5 border-b border-white/10">
-                <button onClick={() => setmenustat(false)}
+                <button aria-label="إغلاق القائمة" onClick={() => setmenustat(false)}
                   className="text-white hover:text-red-400 transition-colors duration-200">
                   <IconClose size={26} />
                 </button>

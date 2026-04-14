@@ -7,7 +7,7 @@ import {
 } from '../../../lib/icons';
 
 /*
-  Footer — درجة teal-800 (#0D4A47) للـ header bar
+  Footer — درجة teal-800 (var(--teal-800)) للـ header bar
   وتدريج من teal-700 لـ teal-800 للخلفية الرئيسية
   أغمق درجة في الموقع كله — يكمل هرم الألوان:
   ┌────────────────────────────────────────┐
@@ -19,7 +19,7 @@ import {
   └────────────────────────────────────────┘
 */
 
-const GOLD = '#FFD43B';
+const GOLD = 'var(--brand-accent)';
 const quickLinks = [
   { label: 'الرئيسية', href: '/',        Icon: IconHome },
   { label: 'الكتب',    href: '/#books',  Icon: IconBook },
@@ -50,7 +50,7 @@ function Footer() {
     <footer id="contact" style={{ background: 'var(--color-footer)' }}>
 
       {/* ── Top divider accent ─────────────────────────────── */}
-      <div className="h-1" style={{ background: 'linear-gradient(90deg,#4EC4BD,#FFD43B,#4EC4BD)' }} />
+      <div className="h-1" style={{ background: 'linear-gradient(90deg,var(--teal-400),var(--brand-accent),var(--teal-400))' }} />
 
       {/* ── Main content ───────────────────────────────────── */}
       <div className="max-w-6xl mx-auto px-5 py-12">
@@ -71,7 +71,7 @@ function Footer() {
               <a
                 href="https://www.facebook.com/Amaleducationalstore?locale=ar_AR"
                 target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition duration-200 hover:scale-110 hover:-translate-y-0.5"
                 style={{ background: '#1877F2' }}
                 title="فيسبوك"
               >
@@ -80,7 +80,7 @@ function Footer() {
               <a
                 href="https://api.whatsapp.com/send?phone=201069571111"
                 target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition duration-200 hover:scale-110 hover:-translate-y-0.5"
                 style={{ background: '#25D366' }}
                 title="واتساب"
               >
@@ -88,8 +88,8 @@ function Footer() {
               </a>
               <a
                 href="tel:01069571111"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
-                style={{ background: 'linear-gradient(135deg,#4EC4BD,#2E9E98)' }}
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition duration-200 hover:scale-110 hover:-translate-y-0.5"
+                style={{ background: 'var(--gradient-brand)' }}
                 title="اتصل بنا"
               >
                 <IconPhone size={17} />
@@ -149,7 +149,7 @@ function Footer() {
               </a>
             </div>
             <div className="mt-1 flex items-center gap-2 text-white/60 text-xs">
-              <IconLocation size={13} style={{ color: '#66CBBD' }} />
+              <IconLocation size={13} style={{ color: 'var(--teal-300)' }} />
               <span>جميع محافظات مصر</span>
             </div>
           </div>

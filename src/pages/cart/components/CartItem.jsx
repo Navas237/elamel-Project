@@ -27,7 +27,7 @@ export default function CartItem({ item, discountData, onDelete, onPlus, onMinus
         <>
             <div className="hidden md:grid grid-cols-8 gap-4 px-6 py-4 items-center hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0">
                 <div className="text-center">
-                    <button onClick={onDelete} className="text-red-400 hover:text-red-600 hover:scale-110 transition-all text-3xl">
+                    <button aria-label="حذف العنصر" onClick={onDelete} className="text-red-400 hover:text-red-600 hover:scale-110 transition text-3xl">
                         <MdDeleteForever />
                     </button>
                 </div>
@@ -66,7 +66,7 @@ export default function CartItem({ item, discountData, onDelete, onPlus, onMinus
                 </div>
             </div>
 
-            <div className="md:hidden bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 p-2">
+            <div className="md:hidden bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition duration-300 p-2">
                 <div className="flex items-start justify-between gap-2 mb-2">
                     <div className="flex items-baseline gap-1">
                         {pct > 0 && (
@@ -91,7 +91,7 @@ export default function CartItem({ item, discountData, onDelete, onPlus, onMinus
                                 وفرت: {savedAmount} ج{!isHidden && ` (%${pct})`}
                             </span>
                         )}
-                        <button onClick={onDelete} className="text-red-400 hover:text-red-600 transition-colors text-lg">
+                        <button aria-label="حذف العنصر" onClick={onDelete} className="text-red-400 hover:text-red-600 transition-colors text-lg">
                             <MdDeleteForever />
                         </button>
                     </div>

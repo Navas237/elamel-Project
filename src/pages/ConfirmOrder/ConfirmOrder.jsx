@@ -266,10 +266,10 @@ function ConfirmOrder() {
       padding: '5px',
       fontSize: '18px',
       backgroundColor: '#f8f9fa',
-      border: state.isFocused ? '2px solid #4EC4BD' : '1px solid #e1e4e8',
+      border: state.isFocused ? '2px solid var(--teal-400)' : '1px solid #e1e4e8',
       boxShadow: state.isFocused ? '0 4px 12px rgba(78,196,189,0.18)' : 'none',
       '&:hover': {
-        borderColor: state.isFocused ? '#4EC4BD' : '#99DDD3',
+        borderColor: state.isFocused ? 'var(--teal-400)' : 'var(--teal-200)',
         backgroundColor: '#fff',
       },
       transition: 'all 0.3s ease',
@@ -296,10 +296,10 @@ function ConfirmOrder() {
       ...base,
       textAlign: 'right',
       fontSize: '16px',
-      backgroundColor: state.isSelected ? '#4EC4BD' : state.isFocused ? '#F0FBFA' : '#fff',
+      backgroundColor: state.isSelected ? 'var(--teal-400)' : state.isFocused ? 'var(--teal-50)' : '#fff',
       color: state.isSelected ? '#fff' : '#334155',
       '&:active': {
-        backgroundColor: '#2E9E98',
+        backgroundColor: 'var(--teal-500)',
       }
     }),
     container: (base) => ({
@@ -454,7 +454,7 @@ function ConfirmOrder() {
            text: `تم اضافة ${Math.ceil(increasWight)}ج رسوم اضافية نظرا لوزن الاوردر ليصبح الاجمالي ${net} لتأكيد ذلك اضغط "تأكيد"`,
            icon: "warning",
            showCancelButton: true,
-           confirmButtonColor: "#2E9E98",
+           confirmButtonColor: "var(--teal-500)",
            cancelButtonColor: "#d33",
            cancelButtonText: "الغاء",
            confirmButtonText: "تاكيد"
@@ -502,7 +502,7 @@ function ConfirmOrder() {
       fontSize: '16px',
       fontWeight: '500',
       '&.Mui-focused': {
-        color: '#4EC4BD',
+        color: 'var(--teal-400)',
       },
     },
   };
@@ -540,7 +540,7 @@ function ConfirmOrder() {
                 {/* Personal Info Section */}
                 <div className='mb-8 sm:mb-10'>
                   <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-5 sm:mb-7 flex items-center gap-2.5'>
-                    <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white shadow-sm' style={{background:'linear-gradient(135deg,#4EC4BD,#2E9E98)'}}>1</span>
+                    <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white shadow-sm' style={{background:'var(--gradient-brand)'}}>1</span>
                     <span className='text-lg sm:text-2xl'>البيانات الشخصية</span>
                   </h2>
 
@@ -593,7 +593,7 @@ function ConfirmOrder() {
                 {/* Address Section */}
                 <div className='mb-8 sm:mb-10'>
                   <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-5 sm:mb-7 flex items-center gap-2.5'>
-                    <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white shadow-sm' style={{background:'linear-gradient(135deg,#2E9E98,#1D7A75)'}}>2</span>
+                    <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white shadow-sm' style={{background:'var(--color-primary-button)'}}>2</span>
                     <span className='text-lg sm:text-2xl'>عنوان التوصيل</span>
                   </h2>
 
@@ -763,8 +763,8 @@ function ConfirmOrder() {
                   </div>
 
                   {longOfCharge && (
-                    <div className='mt-4 sm:mt-5 rounded-xl p-3.5 sm:p-4 border-r-4' style={{background:'#F7FBFB',borderColor:'#4EC4BD'}}>
-                      <p className='font-medium text-right text-sm sm:text-base' style={{color:'#1D7A75'}}>{longOfCharge}</p>
+                    <div className='mt-4 sm:mt-5 rounded-xl p-3.5 sm:p-4 border' style={{background:'var(--color-surface-muted)',borderColor:'var(--color-card-border-strong)'}}>
+                      <p className='font-medium text-right text-sm sm:text-base' style={{color:'var(--teal-700)'}}>{longOfCharge}</p>
 
                     </div>
                   )}
@@ -773,7 +773,7 @@ function ConfirmOrder() {
                 {/* Submit Button */}
                 <button
                   type='submit'
-                  className='w-full text-white font-bold text-lg sm:text-xl py-3.5 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg transform transition-all duration-300 active:scale-95 sm:hover:scale-[1.015] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 sm:gap-3'
+                  className='w-full text-white font-bold text-lg sm:text-xl py-3.5 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg transform transition duration-300 active:scale-95 sm:hover:scale-[1.015] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 sm:gap-3'
                   style={{background:'var(--color-primary-button)', boxShadow:'0 18px 34px rgba(29,122,117,0.22)'}}
                   disabled={confirmOrderLoading}
                 >

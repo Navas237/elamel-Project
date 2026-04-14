@@ -17,41 +17,41 @@ const stages = [
     name: 'الابتدائية', path: 'sf/prim',
     Icon: IconBook,
     /* teal-400 + teal-500 */
-    gradient:  'linear-gradient(135deg,#4EC4BD,#2E9E98)',
+    gradient:  'var(--gradient-brand)',
     iconColor: '#fff',
-    cardBg:    '#F0FBFA',
-    border:    '#99DDD3',
-    textColor: '#1D7A75',
+    cardBg:    'var(--teal-50)',
+    border:    'var(--teal-200)',
+    textColor: 'var(--teal-600)',
   },
   {
     name: 'الحضانة', path: 'sf/kg',
     Icon: IconStar,
     /* teal-300 + teal-400 */
-    gradient:  'linear-gradient(135deg,#66CBBD,#4EC4BD)',
+    gradient:  'linear-gradient(135deg,var(--teal-300),var(--teal-400))',
     iconColor: '#fff',
-    cardBg:    '#F0FBFA',
-    border:    '#99DDD3',
-    textColor: '#2E9E98',
+    cardBg:    'var(--teal-50)',
+    border:    'var(--teal-200)',
+    textColor: 'var(--teal-500)',
   },
   {
     name: 'الثانوية', path: 'sf/sec',
     Icon: IconGraduation,
     /* teal-500 + teal-600 */
-    gradient:  'linear-gradient(135deg,#2E9E98,#1D7A75)',
+    gradient:  'var(--color-primary-button)',
     iconColor: '#fff',
     cardBg:    '#E8F6F5',
-    border:    '#66CBBD',
-    textColor: '#135C58',
+    border:    'var(--teal-300)',
+    textColor: 'var(--teal-700)',
   },
   {
     name: 'الإعدادية', path: 'sf/prep',
     Icon: IconBookmark,
     /* teal-600 + teal-700 */
-    gradient:  'linear-gradient(135deg,#1D7A75,#135C58)',
-    iconColor: '#FFD43B',
+    gradient:  'linear-gradient(135deg,var(--teal-600),var(--teal-700))',
+    iconColor: 'var(--brand-accent)',
     cardBg:    '#E0F2F1',
-    border:    '#4EC4BD',
-    textColor: '#0D4A47',
+    border:    'var(--teal-400)',
+    textColor: 'var(--teal-800)',
   },
 ];
 
@@ -88,12 +88,12 @@ function Category() {
 
       {/* ── Educational Stages ─────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-3 pb-10">
-        <div className="grid grid-cols-2 gap-3 md:gap-5">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4 sm:gap-6">
           {stages.map((stage, i) => (
             <Link
               key={i}
               to={stage.path}
-              className="group relative overflow-hidden rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border-2"
+              className="group relative overflow-hidden rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-md hover:shadow-2xl transition duration-300 hover:-translate-y-1.5 border-2"
               style={{ background: stage.cardBg, borderColor: stage.border }}
             >
               {/* Icon circle */}
@@ -105,7 +105,7 @@ function Category() {
               </div>
 
               {/* Label */}
-              <p className="text-xs font-medium text-center mb-0.5" style={{ color: '#6B9E9B' }}>المرحلة</p>
+              <p className="text-xs font-medium text-center mb-0.5" style={{ color: 'var(--teal-300)' }}>المرحلة</p>
               <p className="font-extrabold text-lg md:text-2xl text-center" style={{ color: stage.textColor }}>
                 {stage.name}
               </p>
@@ -126,28 +126,28 @@ function Category() {
           <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-5 md:p-8">
             {/* Title */}
             <div className="flex items-center justify-center gap-2 mb-5">
-              <IconSparkles size={22} color="#FFD43B" />
+              <IconSparkles size={22} color="var(--brand-accent)" />
               <h2
-                className="text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent"
-                style={{ backgroundImage: 'linear-gradient(135deg,#4EC4BD,#1D7A75)' }}
+                className="text-2xl md:text-3xl font-extrabold"
+                style={{ color: 'var(--teal-800)' }}
               >
                 العروض الحصرية
               </h2>
-              <IconSparkles size={22} color="#FFD43B" />
+              <IconSparkles size={22} color="var(--brand-accent)" />
             </div>
 
             <div className="flex flex-wrap justify-center gap-3">
               {formattedOffers.map((offer, i) => {
                 /* Alternate teal shades for visual variety */
                 const shades = [
-                  { bg: 'linear-gradient(135deg,#F0FBFA,#CCEEE9)', border: '#99DDD3', text: '#1D7A75' },
-                  { bg: 'linear-gradient(135deg,#CCEEE9,#F0FBFA)', border: '#66CBBD', text: '#135C58' },
+                  { bg: 'linear-gradient(135deg,var(--teal-50),var(--teal-100))', border: 'var(--teal-200)', text: 'var(--teal-600)' },
+                  { bg: 'linear-gradient(135deg,var(--teal-100),var(--teal-50))', border: 'var(--teal-300)', text: 'var(--teal-700)' },
                 ];
                 const s = shades[i % 2];
                 return (
                   <div
                     key={i}
-                    className="w-[calc(50%-0.375rem)] md:w-[calc(20%-0.8rem)] rounded-2xl p-4 text-center transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 cursor-default"
+                    className="w-[calc(50%-0.375rem)] md:w-[calc(20%-0.8rem)] rounded-2xl p-4 text-center transition duration-300 hover:scale-105 hover:shadow-lg border-2 cursor-default"
                     style={{ background: s.bg, borderColor: s.border }}
                   >
                     <div className="flex justify-center mb-2">
@@ -160,7 +160,7 @@ function Category() {
                       {offer.condition}
                     </div>
                     {offer.amount && (
-                      <div className="text-sm font-bold mt-1.5" style={{ color: '#2E9E98' }}>
+                      <div className="text-sm font-bold mt-1.5" style={{ color: 'var(--teal-500)' }}>
                         {offer.egp} {offer.amount}
                         <span className="block text-xs">{offer.more}</span>
                       </div>
@@ -180,7 +180,7 @@ function Category() {
             من نحن؟
             <span
               className="absolute bottom-0 right-0 left-0 h-[3px] rounded-full translate-y-2"
-              style={{ background: 'linear-gradient(135deg,#4EC4BD,#FFD43B)' }}
+              style={{ background: 'linear-gradient(135deg,var(--teal-400),var(--brand-accent))' }}
             />
           </h2>
         </div>
@@ -192,16 +192,16 @@ function Category() {
             <div className="grid grid-cols-2 gap-3 md:gap-4">
               {features.map((f, i) => {
                 const cardShades = [
-                  { bg: '#F0FBFA', icon: '#4EC4BD', title: '#1D7A75' },
-                  { bg: '#E8F6F5', icon: '#2E9E98', title: '#135C58' },
-                  { bg: '#CCEEE9', icon: '#1D7A75', title: '#0D4A47' },
-                  { bg: '#F0FBFA', icon: '#66CBBD', title: '#2E9E98' },
+                  { bg: 'var(--teal-50)', icon: 'var(--teal-400)', title: 'var(--teal-600)' },
+                  { bg: '#E8F6F5', icon: 'var(--teal-500)', title: 'var(--teal-700)' },
+                  { bg: 'var(--teal-100)', icon: 'var(--teal-600)', title: 'var(--teal-800)' },
+                  { bg: 'var(--teal-50)', icon: 'var(--teal-300)', title: 'var(--teal-500)' },
                 ];
                 const cs = cardShades[i % cardShades.length];
                 return (
                   <div
                     key={i}
-                    className="p-4 rounded-2xl text-center hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md"
+                    className="p-4 rounded-2xl text-center hover:scale-105 transition duration-300 shadow-sm hover:shadow-md"
                     style={{ background: cs.bg }}
                   >
                     <f.Icon size={30} color={cs.icon} className="mx-auto mb-2" strokeWidth={1.8} />
@@ -215,14 +215,14 @@ function Category() {
             {/* About text */}
             <div className="space-y-4 text-right">
               <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                <span className="text-xl md:text-2xl font-extrabold" style={{ color: '#2E9E98' }}>مكتبة الأمل</span>{' '}
+                <span className="text-xl md:text-2xl font-extrabold" style={{ color: 'var(--teal-500)' }}>مكتبة الأمل</span>{' '}
                 هي وجهتك الأولى للحصول على الكتب الدراسية بجودة عالية وأسعار تنافسية. نؤمن بأن التعليم حق للجميع.
               </p>
               <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                 نقدم خدمة البيع الإلكتروني مع{' '}
-                <strong style={{ color: '#2E9E98' }}>توصيل سريع وآمن</strong>{' '}
+                <strong style={{ color: 'var(--teal-500)' }}>توصيل سريع وآمن</strong>{' '}
                 لجميع محافظات الجمهورية، وخصومات مميزة تصل إلى{' '}
-                <strong className="text-2xl" style={{ color: '#4EC4BD' }}>15%</strong>.
+                <strong className="text-2xl" style={{ color: 'var(--teal-400)' }}>15%</strong>.
               </p>
 
               {/* Social CTAs */}
@@ -230,7 +230,7 @@ function Category() {
                 <a
                   href="https://api.whatsapp.com/send?phone=201069571111"
                   target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-white font-bold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-white font-bold text-sm hover:-translate-y-0.5 hover:shadow-lg transition duration-200"
                   style={{ background: '#25D366' }}
                 >
                   <IconWhatsapp size={17} /> واتساب
@@ -238,7 +238,7 @@ function Category() {
                 <a
                   href="https://www.facebook.com/Amaleducationalstore?locale=ar_AR"
                   target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-white font-bold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-white font-bold text-sm hover:-translate-y-0.5 hover:shadow-lg transition duration-200"
                   style={{ background: '#1877F2' }}
                 >
                   <IconFacebook size={17} /> فيسبوك

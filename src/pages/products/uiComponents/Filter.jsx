@@ -20,7 +20,7 @@ const selectStyles = {
     direction: 'rtl',
     minHeight: '45px',
   }),
-  placeholder: (base) => ({ ...base, textAlign: 'right', color: '#6B9E9B' }),
+  placeholder: (base) => ({ ...base, textAlign: 'right', color: 'var(--teal-300)' }),
   singleValue:  (base) => ({ ...base, textAlign: 'right', fontWeight: 'bold', color: 'var(--teal-600)' }),
   indicatorSeparator: () => ({ display: 'none' }),
   dropdownIndicator: (base) => ({ ...base, color: 'var(--teal-400)' }),

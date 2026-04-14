@@ -2,7 +2,7 @@ import React from 'react';
 import { IconLoading } from '../../../lib/icons';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-xl font-bold transition-all duration-200 disabled:cursor-not-allowed disabled:transform-none select-none';
+  'inline-flex items-center justify-center gap-2 rounded-xl font-bold transition duration-200 disabled:cursor-not-allowed disabled:transform-none select-none';
 
 const variants = {
   primary: 'text-white',
@@ -16,10 +16,10 @@ const variants = {
 const variantStyle = {
   primary: { background: 'var(--color-primary-button)' },
   success: { background: 'var(--color-primary-button)' },
-  gold:    { background: 'linear-gradient(135deg,#FFD43B,#F0B800)' },
+  gold:    { background: 'linear-gradient(135deg,var(--brand-accent),var(--brand-accent-dark))' },
   outline: { borderColor: 'var(--color-outline-border)' },
   neutral: {},
-  danger:  { background: 'linear-gradient(135deg,#ef4444,#dc2626)' },
+  danger:  { background: 'linear-gradient(135deg,var(--brand-danger),#dc2626)' },
 };
 
 const sizes = {
