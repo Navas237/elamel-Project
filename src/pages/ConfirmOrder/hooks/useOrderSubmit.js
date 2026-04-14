@@ -186,7 +186,7 @@ export default function useOrderSubmit(
                 text: `تم اضافة ${Math.ceil(increasWight)}ج رسوم اضافية نظرا لوزن الاوردر ليصبح الاجمالي ${net} لتأكيد ذلك اضغط "تأكيد"`,
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#3085d6",
+                confirmButtonColor: "#2E9E98",
                 cancelButtonColor: "#d33",
                 cancelButtonText: "الغاء",
                 confirmButtonText: "تاكيد"

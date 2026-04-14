@@ -10,7 +10,7 @@ export default function PersonalInfoForm({
     return (
         <div className='mb-6 sm:mb-8'>
             <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 flex items-center gap-2'>
-                <span className='w-7 h-7 sm:w-8 sm:h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold text-sm sm:text-base'>1</span>
+                <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white' style={{background:'linear-gradient(135deg,#4EC4BD,#2E9E98)'}}>1</span>
                 <span className='text-lg sm:text-2xl'>البيانات الشخصية</span>
             </h2>
 

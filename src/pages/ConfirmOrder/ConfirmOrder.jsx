@@ -7,8 +7,7 @@ import { useForm } from 'react-hook-form'
 import { cartcontext } from '../../context/CartCotext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { escema, getDynamicSchema } from '../../schemas/ConfirmOrderValidation'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
-import { FaArrowRight, FaCartShopping } from 'react-icons/fa6'
+import { IconLoading, IconArrowLeft, IconCart } from '../../lib/icons'
 import FormHelperText from '@mui/material/FormHelperText'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
@@ -18,6 +17,8 @@ import InvoiceModal from '../../components/InvoiceModal'
 import whatsLo from "../../images/image.png"
 import { contrallSpipping } from './service/shipping'
 import { calculateDiscountData, calculateTotalPriceAfterDiscount } from '../../utils/discountUtils'
+
+import { useMinimum } from '../../hooks/useMinmum'
 
 function ConfirmOrder() {
   const [selectedGovernorate, setSelectedGovernorate] = useState('')
@@ -265,10 +266,10 @@ function ConfirmOrder() {
       padding: '5px',
       fontSize: '18px',
       backgroundColor: '#f8f9fa',
-      border: state.isFocused ? '1px solid #3b82f6' : '1px solid #e1e4e8',
-      boxShadow: state.isFocused ? '0 4px 12px rgba(59, 130, 246, 0.15)' : 'none',
+      border: state.isFocused ? '2px solid #4EC4BD' : '1px solid #e1e4e8',
+      boxShadow: state.isFocused ? '0 4px 12px rgba(78,196,189,0.18)' : 'none',
       '&:hover': {
-        borderColor: state.isFocused ? '#3b82f6' : '#cbd5e1',
+        borderColor: state.isFocused ? '#4EC4BD' : '#99DDD3',
         backgroundColor: '#fff',
       },
       transition: 'all 0.3s ease',
@@ -295,10 +296,10 @@ function ConfirmOrder() {
       ...base,
       textAlign: 'right',
       fontSize: '16px',
-      backgroundColor: state.isSelected ? '#3b82f6' : state.isFocused ? '#eff6ff' : '#fff',
+      backgroundColor: state.isSelected ? '#4EC4BD' : state.isFocused ? '#F0FBFA' : '#fff',
       color: state.isSelected ? '#fff' : '#334155',
       '&:active': {
-        backgroundColor: '#3b82f6',
+        backgroundColor: '#2E9E98',
       }
     }),
     container: (base) => ({
@@ -340,7 +341,7 @@ function ConfirmOrder() {
 
 
 
-    // Helper function to submit order
+   
     const submitOrder = async () => {
       // Prevent duplicate submissions using ref (immediate check)
       if (isSubmittingRef.current || confirmOrderLoading) return;
@@ -441,19 +442,7 @@ function ConfirmOrder() {
       }
     };
 
-//       const waitChange = await Swal.fire({
-//         title:  "تمام كدا  الأوردر اتسجل ✅ ",
-//         html: ` <p class="mb-2"> ${longOfCharge}</p>
 
-//  <p class="font-bold"> يرجي ترك الهاتف متاح لتلقي مكالمه مندوب الشحن خلال هذه الفتره</p>
-//        `,
-//         icon: "success",
-//         showCancelButton: true,
-//         confirmButtonColor: "#3085d6",
-//         cancelButtonColor: "#d33",
-//         cancelButtonText: "الغاء",
-//         confirmButtonText: "تأكيد"
-//       });
 
       
 
@@ -465,7 +454,7 @@ function ConfirmOrder() {
            text: `تم اضافة ${Math.ceil(increasWight)}ج رسوم اضافية نظرا لوزن الاوردر ليصبح الاجمالي ${net} لتأكيد ذلك اضغط "تأكيد"`,
            icon: "warning",
            showCancelButton: true,
-           confirmButtonColor: "#3085d6",
+           confirmButtonColor: "#2E9E98",
            cancelButtonColor: "#d33",
            cancelButtonText: "الغاء",
            confirmButtonText: "تاكيد"
@@ -506,14 +495,14 @@ function ConfirmOrder() {
       },
       '&.Mui-focused': {
         backgroundColor: '#fff',
-        boxShadow: '0 4px 12px rgba(59, 130, 246, 0.15)',
+        boxShadow: '0 4px 12px rgba(78,196,189,0.15)',
       },
     },
     '& .MuiInputLabel-root': {
       fontSize: '16px',
       fontWeight: '500',
       '&.Mui-focused': {
-        color: '#3b82f6',
+        color: '#4EC4BD',
       },
     },
   };
@@ -529,12 +518,12 @@ function ConfirmOrder() {
         time={longOfCharge}
       />
 
-      <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-4 px-3 sm:py-12 sm:px-4 mt-[70px] sm:mt-[80px]'>
+      <div className='min-h-screen py-5 px-3 sm:py-14 sm:px-4 mt-[70px] sm:mt-[80px]' style={{background:'linear-gradient(180deg, var(--color-page-bg) 0%, var(--color-page-bg-soft) 100%)'}}>
         <div className='max-w-4xl mx-auto'>
 
           {/* Header Section */}
-          <div className='text-center mb-6 sm:mb-8'>
-            <div className='inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-3 sm:mb-4 shadow-lg'>
+          <div className='text-center mb-7 sm:mb-10'>
+            <div className='inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full mb-3 sm:mb-4 shadow-lg' style={{background:'var(--color-primary-button)', boxShadow:'0 12px 28px rgba(29,122,117,0.18)'}}>
               {/* <FaShoppingCart className='text-white text-xl sm:text-2xl' /> */}
             </div>
             <h1 className='text-2xl sm:text-4xl font-bold text-gray-800 mb-2'>تأكيد الطلب</h1>
@@ -542,16 +531,16 @@ function ConfirmOrder() {
           </div>
 
           {/* Main Form Card */}
-          <div className='bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden'>
-            <div className='bg-gradient-to-r from-blue-500 to-purple-600 h-1.5 sm:h-2'></div>
+          <div className='bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden border' style={{ borderColor: 'var(--color-card-border)' }}>
+            <div className='h-1.5 sm:h-2' style={{background:'var(--color-primary-button)'}}></div>
 
-            <div className='p-4 sm:p-8 md:p-10'>
+            <div className='p-4 sm:p-8 md:p-10 lg:p-12'>
               <form onSubmit={handleSubmit(getformData)}>
 
                 {/* Personal Info Section */}
-                <div className='mb-6 sm:mb-8'>
-                  <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 flex items-center gap-2'>
-                    <span className='w-7 h-7 sm:w-8 sm:h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold text-sm sm:text-base'>1</span>
+                <div className='mb-8 sm:mb-10'>
+                  <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-5 sm:mb-7 flex items-center gap-2.5'>
+                    <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white shadow-sm' style={{background:'linear-gradient(135deg,#4EC4BD,#2E9E98)'}}>1</span>
                     <span className='text-lg sm:text-2xl'>البيانات الشخصية</span>
                   </h2>
 
@@ -602,9 +591,9 @@ function ConfirmOrder() {
                 </div>
 
                 {/* Address Section */}
-                <div className='mb-6 sm:mb-8'>
-                  <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 flex items-center gap-2'>
-                    <span className='w-7 h-7 sm:w-8 sm:h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 font-bold text-sm sm:text-base'>2</span>
+                <div className='mb-8 sm:mb-10'>
+                  <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-5 sm:mb-7 flex items-center gap-2.5'>
+                    <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white shadow-sm' style={{background:'linear-gradient(135deg,#2E9E98,#1D7A75)'}}>2</span>
                     <span className='text-lg sm:text-2xl'>عنوان التوصيل</span>
                   </h2>
 
@@ -714,13 +703,13 @@ function ConfirmOrder() {
                 </div>
 
                 {/* Order Summary Section */}
-                <div className='mb-6 sm:mb-8'>
-                  <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 flex items-center gap-2'>
-                    <span className='w-7 h-7 sm:w-8 sm:h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600 font-bold text-sm sm:text-base'>3</span>
+                <div className='mb-8 sm:mb-10'>
+                  <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-5 sm:mb-7 flex items-center gap-2.5'>
+                    <span className='w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-sm' style={{ background:'var(--color-primary-button)' }}>3</span>
                     <span className='text-lg sm:text-2xl'>ملخص الطلب</span>
                   </h2>
 
-                  <div className='bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 space-y-3 sm:space-y-4 border-2 border-blue-100'>
+                  <div className='rounded-xl sm:rounded-2xl p-4 sm:p-6 space-y-3.5 sm:space-y-4 border' style={{background:'linear-gradient(135deg,#FFFFFF,#F7FBFB)',borderColor:'var(--color-card-border-strong)', boxShadow:'inset 0 1px 0 rgba(255,255,255,0.8)'}}>
                     <div className='flex justify-between items-center pb-2 sm:pb-3 border-b-2 border-gray-200'>
                       <div className='flex items-center text-grat-700 gap-1 sm:gap-2'>
                         <span className='text-sm sm:text-base font-bold '>جنيه</span>
@@ -760,7 +749,7 @@ function ConfirmOrder() {
                       </div>
                       <span className='text-sm sm:text-lg font-semibold text-gray-700'>مصاريف الشحن</span>
                     </div>
-                    <div className='flex justify-between items-center pt-2 sm:pt-3 bg-gradient-to-r from-green-50 to-emerald-50 -mx-4 sm:-mx-6 -mb-4 sm:-mb-6 px-4 sm:px-6 py-3 sm:py-4 rounded-b-xl sm:rounded-b-2xl border-t-4 border-green-300'>
+                    <div className='flex justify-between items-center pt-2 sm:pt-3 -mx-4 sm:-mx-6 -mb-4 sm:-mb-6 px-4 sm:px-6 py-3.5 sm:py-4 rounded-b-xl sm:rounded-b-2xl border-t-4' style={{ background:'linear-gradient(135deg,#F2FBFA,#E8F7F5)', borderColor:'var(--teal-300)' }}>
                       <div className='flex items-center gap-1 sm:gap-2'>
                         <span className='text-lg sm:text-xl font-semibold text-green-700'>جنيه</span>
 
@@ -774,8 +763,8 @@ function ConfirmOrder() {
                   </div>
 
                   {longOfCharge && (
-                    <div className='mt-3 sm:mt-4 bg-blue-50 border-r-4 border-blue-500 rounded-lg p-3 sm:p-4'>
-                      <p className='text-blue-800 font-medium text-right text-sm sm:text-base'>{longOfCharge}</p>
+                    <div className='mt-4 sm:mt-5 rounded-xl p-3.5 sm:p-4 border-r-4' style={{background:'#F7FBFB',borderColor:'#4EC4BD'}}>
+                      <p className='font-medium text-right text-sm sm:text-base' style={{color:'#1D7A75'}}>{longOfCharge}</p>
 
                     </div>
                   )}
@@ -784,18 +773,19 @@ function ConfirmOrder() {
                 {/* Submit Button */}
                 <button
                   type='submit'
-                  className='w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold text-lg sm:text-xl py-3.5 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg transform transition-all duration-300 active:scale-95 sm:hover:scale-[1.02] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 sm:gap-3'
+                  className='w-full text-white font-bold text-lg sm:text-xl py-3.5 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg transform transition-all duration-300 active:scale-95 sm:hover:scale-[1.015] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 sm:gap-3'
+                  style={{background:'var(--color-primary-button)', boxShadow:'0 18px 34px rgba(29,122,117,0.22)'}}
                   disabled={confirmOrderLoading}
                 >
                   {confirmOrderLoading ? (
                     <>
-                      <AiOutlineLoading3Quarters className='text-xl sm:text-2xl animate-spin' />
+                      <IconLoading size={22} className='animate-spin' />
                       <span>  جاري تسجيل الأوردر...</span>
                     </>
                   ) : (
                     <>
                       <span>تأكيد الطلب</span>
-                      <FaArrowRight className='rotate-180 text-lg sm:text-xl' />
+                      <IconArrowLeft size={20} />
                     </>
                   )}
                 </button>
@@ -811,19 +801,19 @@ function ConfirmOrder() {
           </div>
 
           {/* Trust Badges */}
-          <div className='mt-6 sm:mt-8 grid grid-cols-3 gap-2 sm:gap-4 text-center'>
-            <div className='bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-md'>
+          <div className='mt-7 sm:mt-9 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-center'>
+            <div className='bg-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 shadow-md border' style={{ borderColor:'var(--color-card-border)' }}>
               {/* <div className='text-2xl sm:text-3xl mb-1 sm:mb-2'>🚚</div> */}
               <p className='text-xs sm:text-sm font-semibold text-gray-700'> 🚚 توصيل لحد باب البيت</p>
             </div>
-            <div className='bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-md'>
+            <div className='bg-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 shadow-md border' style={{ borderColor:'var(--color-card-border)' }}>
               {/* <div className='text-2xl sm:text-3xl mb-1 sm:mb-2'>💳</div> */}
               {/* <div className='text-2xl sm:text-3xl mb-1 sm:mb-2'>💵</div> */}
               <p className='text-xs sm:text-sm font-semibold text-gray-700'>  💵 الدفع عند الاستلام
 
               </p>
             </div>
-            <div className='bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-md'>
+            <div className='bg-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 shadow-md border' style={{ borderColor:'var(--color-card-border)' }}>
               {/* <div className='text-2xl sm:text-3xl mb-1 sm:mb-2'></div> */}
               <p className='text-xs sm:text-sm font-semibold text-gray-700'> ✅ ضمان الجوده </p>
             </div>

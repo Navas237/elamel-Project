@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { IconArrowRight, IconBookOpen, IconSparkles } from '../../../lib/icons';
 
 function Elsafe() {
   const { level } = useParams();
@@ -8,90 +9,110 @@ function Elsafe() {
     window.scroll({ top: 0 });
   }, []);
 
+  /* 
+    نظام الدرجات لأيقونات الصفوف: بنستخدم درجات الـ Teal المتدرجة 
+    بشكل متناسق مع إضافة درجة Gold خفيفة لبعض البطاقات للتمييز 
+  */
+  const palettes = [
+    { bg: 'linear-gradient(135deg,#4EC4BD,#2E9E98)', hoverBg: 'rgba(78, 196, 189, 0.1)', border: '#4EC4BD' },
+    { bg: 'linear-gradient(135deg,#2E9E98,#1D7A75)', hoverBg: 'rgba(46, 158, 152, 0.1)', border: '#2E9E98' },
+    { bg: 'linear-gradient(135deg,#1D7A75,#135C58)', hoverBg: 'rgba(29, 122, 117, 0.1)', border: '#1D7A75' },
+    { bg: 'linear-gradient(135deg,#66CBBD,#4EC4BD)', hoverBg: 'rgba(102, 203, 189, 0.1)', border: '#66CBBD' },
+    { bg: 'linear-gradient(135deg,#FFD43B,#F5A623)', hoverBg: 'rgba(255, 212, 59, 0.1)',  border: '#FFD43B' },
+    { bg: 'linear-gradient(135deg,#0D4A47,#135C58)', hoverBg: 'rgba(13, 74, 71, 0.1)',    border: '#0D4A47' },
+  ];
+
   const stages = {
     'kg': [
-      { name: 'كي جي 1', grade: '1', icon: '1️⃣', color: 'from-pink-500 to-pink-600' },
-      { name: 'كي جي 2', grade: '2', icon: '2️⃣', color: 'from-pink-500 to-pink-600' },
+      { name: 'كي جي 1', grade: '1', p: palettes[0] },
+      { name: 'كي جي 2', grade: '2', p: palettes[1] },
     ],
     'prim': [
-      { name: 'الأول الابتدائي', grade: '1', icon: '1️⃣', color: 'from-purple-500 to-purple-600' },
-      { name: 'الثاني الابتدائي', grade: '2', icon: '2️⃣', color: 'from-blue-500 to-blue-600' },
-      { name: 'الثالث الابتدائي', grade: '3', icon: '3️⃣', color: 'from-green-500 to-green-600' },
-      { name: 'الرابع الابتدائي', grade: '4', icon: '4️⃣', color: 'from-yellow-500 to-yellow-600' },
-      { name: 'الخامس الابتدائي', grade: '5', icon: '5️⃣', color: 'from-orange-500 to-orange-600' },
-      { name: 'السادس الابتدائي', grade: '6', icon: '6️⃣', color: 'from-red-500 to-red-600' },
+      { name: 'الأول الابتدائي', grade: '1', p: palettes[0] },
+      { name: 'الثاني الابتدائي', grade: '2', p: palettes[1] },
+      { name: 'الثالث الابتدائي', grade: '3', p: palettes[2] },
+      { name: 'الرابع الابتدائي', grade: '4', p: palettes[3] },
+      { name: 'الخامس الابتدائي', grade: '5', p: palettes[4] },
+      { name: 'السادس الابتدائي', grade: '6', p: palettes[5] },
     ],
     'prep': [
-      { name: 'الأول الإعدادي', grade: '1', icon: '1️⃣', color: 'from-purple-600 to-purple-800' },
-      { name: 'الثاني الإعدادي', grade: '2', icon: '2️⃣', color: 'from-blue-600 to-blue-800' },
-      { name: 'الثالث الإعدادي', grade: '3', icon: '3️⃣', color: 'from-green-600 to-green-800' },
+      { name: 'الأول الإعدادي', grade: '1', p: palettes[0] },
+      { name: 'الثاني الإعدادي', grade: '2', p: palettes[1] },
+      { name: 'الثالث الإعدادي', grade: '3', p: palettes[2] },
     ],
     'sec': [
-      { name: 'الأول الثانوي', grade: '1', icon: '1️⃣', color: 'from-purple-600 to-purple-800' },
-      { name: 'الثاني الثانوي', grade: '2', icon: '2️⃣', color: 'from-blue-600 to-blue-800' },
-      { name: 'الثالث الثانوي', grade: '3', icon: '3️⃣', color: 'from-green-600 to-green-800' },
+      { name: 'الأول الثانوي', grade: '1', p: palettes[0] },
+      { name: 'الثاني الثانوي', grade: '2', p: palettes[1] },
+      { name: 'الثالث الثانوي', grade: '3', p: palettes[2] },
     ],
   };
 
   const currentStages = stages[level] || [];
-  const isElementary = level === 'primary';
+  const isElementary = level === 'prim';
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen pb-16" style={{ background: 'linear-gradient(180deg, var(--color-page-bg) 0%, var(--color-page-bg-soft) 100%)' }}>
 
-      {/* Header Section */}
-      {/* <div className="bg-gradient-to-r from-[#2d839b] via-[#2a7a90] to-[#2d839b] text-white  py-12 px-6 mt-34 md:mt-37 rounded-b-3xl shadow-xl">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="text-5xl mb-4">
-            {level === 'الابتدائيه' ? '🎒' : level === 'الإعداديه' ? '📚' : '🎓'}
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">
-            المرحلة {level === 'الابتدائيه' ? 'الابتدائية' : level === 'الإعداديه' ? 'الإعدادية' : 'الثانوية'}
-          </h1>
-          <p className="text-lg text-white/90">اختر الصف الدراسي المناسب</p>
-        </div>
-      </div> */}
-
-      {/* Grades Grid */}
-      <div className="max-w-6xl mt-25  flec  mx-auto px-6 pb-16">
-        <div className={`grid ${isElementary ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6  `}>
+      <div className="max-w-6xl mt-25 mx-auto px-6">
+        <div className={`grid ${isElementary ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6`}>
           {currentStages.map((stage, index) => (
             <Link
               key={index}
               to={level === 'sec' && stage.grade === '3' ? `choice/${stage.grade}` : `b/${stage.grade}`}
-              className="group relative self-center bg-white rounded-2xl shadow-lg   hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2"
+              className="group relative self-center bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 border"
+              style={{ borderColor: 'var(--teal-100)' }}
             >
-              {/* Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${stage.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+              {/* Hover Tint Background */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: stage.p.hoverBg }}
+              />
 
               {/* Content */}
               <div className="relative p-5 flex flex-col items-center justify-center min-h-[180px]">
-                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br ${stage.color} flex items-center justify-center text-white text-3xl md:text-4xl font-black shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300 border-4 border-white`}>
+                
+                {/* Number Circle Badge */}
+                <div 
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-white text-3xl md:text-4xl font-black shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300 border-4 border-white"
+                  style={{ background: stage.p.bg }}
+                >
                   {stage.grade}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 text-center group-hover:text-[#2d839b] transition-colors duration-300">
+                
+                <h3 className="text-2xl font-bold text-gray-800 text-center transition-colors duration-300" 
+                    style={{ color: 'var(--teal-800)' }}>
                   {stage.name}
                 </h3>
 
                 {/* Arrow Icon */}
-                <div className="mt-4 text-[#2d839b] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+                <div 
+                  className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:-translate-x-2"
+                  style={{ color: stage.p.border }}
+                >
+                  <IconArrowRight size={24} />
                 </div>
               </div>
 
-              {/* Border Effect */}
-              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${stage.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300`}></div>
+              {/* Animated Bottom Border */}
+              <div 
+                className="absolute bottom-0 left-0 right-0 h-1.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right"
+                style={{ background: stage.p.bg }}
+              />
             </Link>
           ))}
         </div>
 
-        {/* Info Card */}
-        <div className="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 text-center shadow-lg">
-          <div className="text-4xl mb-4">💡</div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-2"></h3>
-          <p className="text-gray-600 text-lg">
+        {/* Info Card - No more blue/purple */}
+        <div 
+          className="mt-12 rounded-2xl p-8 text-center shadow-lg border"
+          style={{ background: 'linear-gradient(135deg,#FFFFFF,#F6FBFB)', borderColor: 'var(--color-card-border-strong)' }}
+        >
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg,#4EC4BD,#2E9E98)' }}>
+               <IconBookOpen size={30} color="#fff" />
+            </div>
+          </div>
+          <p className="text-lg md:text-xl font-bold" style={{ color: '#1D7A75' }}>
             اختر الصف الدراسي للاطلاع على الكتب المتاحة والمواد الدراسية
           </p>
         </div>

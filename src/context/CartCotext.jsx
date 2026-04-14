@@ -196,7 +196,7 @@ export const CartContextProvider = (({ children }) => {
       text: "سوف يتم الحذف من العربه",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#2E9E98",
       cancelButtonColor: "#d33",
       cancelButtonText: "لا",
       confirmButtonText: "نعم"

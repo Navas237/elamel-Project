@@ -1,176 +1,180 @@
-import React, { useEffect } from 'react';
-import './Footer.css';
-import { FaFacebook, FaInstagram } from "react-icons/fa6";
-import { IoLogoWhatsapp } from "react-icons/io5";
-import { FaPhone, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
+import React from 'react';
 import logo from '../../../images/Logo.png';
+import {
+  IconPhone, IconWhatsapp, IconFacebook,
+  IconLocation, IconHome, IconBook, IconOrders,
+  IconShipping, IconDiscount, IconCheck, IconHeart,
+} from '../../../lib/icons';
+
+/*
+  Footer — درجة teal-800 (#0D4A47) للـ header bar
+  وتدريج من teal-700 لـ teal-800 للخلفية الرئيسية
+  أغمق درجة في الموقع كله — يكمل هرم الألوان:
+  ┌────────────────────────────────────────┐
+  │ Navbar top  → teal-700/800 (أغمق top) │
+  │ BottomNav   → teal-600     (وسط)      │
+  │ Buttons     → teal-400/500 (أفتح)     │
+  │ Filter bar  → teal-50      (خفيف جداً)│
+  │ Footer      → teal-800     (base dark)│
+  └────────────────────────────────────────┘
+*/
+
+const GOLD = '#FFD43B';
+const quickLinks = [
+  { label: 'الرئيسية', href: '/',        Icon: IconHome },
+  { label: 'الكتب',    href: '/#books',  Icon: IconBook },
+  { label: 'طلباتي',  href: '/myorder', Icon: IconOrders },
+];
+
+const services = [
+  { label: 'توصيل سريع لجميع المحافظات', Icon: IconShipping },
+  { label: 'خصومات تصل إلى 15%',          Icon: IconDiscount },
+  { label: 'كتب أصلية جودة مضمونة',       Icon: IconCheck },
+];
+
+const stages = [
+  { label: 'المرحلة الابتدائية', href: '/sf/prim' },
+  { label: 'المرحلة الإعدادية', href: '/sf/prep' },
+  { label: 'المرحلة الثانوية',  href: '/sf/sec'  },
+  { label: 'مرحلة الحضانة',     href: '/sf/kg'   },
+];
 
 function Footer() {
-  const getYear = () => {
-    const date = new Date();
-    const year = date.getFullYear();
-    return year;
-  };
+  const year = new Date().getFullYear();
 
-  useEffect(() => {
-    getYear();
-  }, []);
-
-  const socialLinks = [
-    {
-      name: 'فيسبوك',
-      icon: <FaFacebook />,
-      url: 'https://www.facebook.com/Amaleducationalstore?locale=ar_AR',
-      color: 'hover:text-blue-500',
-      bgColor: 'hover:bg-blue-50'
-    },
-    {
-      name: 'واتساب',
-      icon: <IoLogoWhatsapp />,
-      url: 'https://api.whatsapp.com/send?phone=201069571111',
-      color: 'hover:text-green-500',
-      bgColor: 'hover:bg-green-50'
-    }
-  ];
+  /* shared link style inside dark footer */
+  const linkCls = 'flex items-center gap-2 text-white/70 hover:text-yellow-300 transition-colors duration-200 text-sm py-0.5';
+  const headingStyle = { color: GOLD };
 
   return (
-    <div id="contact" className="mt-20">
-      
-      {/* Main Footer */}
-      <footer className="bg-gradient-to-b from-gray-400 to-white pt-16 pb-8">
-        <div className="max-w-7xl mx-auto px-6">
-          
-          {/* Top Section */}
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
-            
-            {/* Logo & Description   */}
-            <div className="flex flex-col items-center md:items-start">
-              <div className="w-48 mb-6">
-                <img 
-                  src={logo} 
-                  alt="مكتبة الأمل" 
-                  className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <p className="text-gray-600 text-center md:text-right text-lg leading-relaxed">
-                مكتبة الأمل - وجهتك الأولى للكتب الدراسية بجودة عالية وأسعار تنافسية
-              </p>
+    <footer id="contact" style={{ background: 'var(--color-footer)' }}>
+
+      {/* ── Top divider accent ─────────────────────────────── */}
+      <div className="h-1" style={{ background: 'linear-gradient(90deg,#4EC4BD,#FFD43B,#4EC4BD)' }} />
+
+      {/* ── Main content ───────────────────────────────────── */}
+      <div className="max-w-6xl mx-auto px-5 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+
+          {/* ① Brand ─────────────────────────────────────── */}
+          <div className="sm:col-span-2 md:col-span-1 flex flex-col items-center md:items-start">
+            <div className="w-24 mb-4 drop-shadow-lg">
+              <img src={logo} alt="مكتبة الأمل" className="w-full object-contain hover:scale-105 transition-transform duration-300" />
             </div>
+            <h2 className="font-extrabold text-white text-lg mb-2">مكتبة الأمل</h2>
+            <p className="text-white/60 text-sm leading-relaxed text-center md:text-right">
+              وجهتك الأولى للكتب الدراسية بجودة عالية وأسعار تنافسية لجميع المراحل.
+            </p>
 
-            {/* Contact Info */}
-            <div className="flex flex-col items-center md:items-start">
-              <h3 className="text-2xl font-bold text-[#2d839b] mb-6 flex items-center gap-2">
-                <FaPhone className="text-xl" />
-                تواصل معنا
-              </h3>
-              
-              <div className="space-y-4 w-full">
-                <a 
-                  href="tel:01069571111"
-                  className="flex items-center gap-3 text-gray-700 hover:text-[#2d839b] transition-colors duration-300 text-lg group"
-                >
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#2d839b] to-[#2a7a90] flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                    <FaPhone className="text-sm" />
-                  </div>
-                  <span className="font-semibold">01069571111</span>
-                </a>
-
-                <div className="flex items-center gap-3 text-gray-700 text-lg">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#2d839b] to-[#2a7a90] flex items-center justify-center text-white">
-                    <FaMapMarkerAlt className="text-sm" />
-                  </div>
-                  <span>جميع محافظات مصر</span>
-                </div>
-              </div>
+            {/* Social icons */}
+            <div className="flex gap-3 mt-5">
+              <a
+                href="https://www.facebook.com/Amaleducationalstore?locale=ar_AR"
+                target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
+                style={{ background: '#1877F2' }}
+                title="فيسبوك"
+              >
+                <IconFacebook size={17} />
+              </a>
+              <a
+                href="https://api.whatsapp.com/send?phone=201069571111"
+                target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
+                style={{ background: '#25D366' }}
+                title="واتساب"
+              >
+                <IconWhatsapp size={17} />
+              </a>
+              <a
+                href="tel:01069571111"
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:-translate-y-0.5"
+                style={{ background: 'linear-gradient(135deg,#4EC4BD,#2E9E98)' }}
+                title="اتصل بنا"
+              >
+                <IconPhone size={17} />
+              </a>
             </div>
+          </div>
 
-            {/* Social Media */}
-            <div className="flex flex-col items-center md:items-start">
-              <h3 className="text-2xl font-bold text-[#2d839b] mb-6">
-                تابعنا على
-              </h3>
-              
-              <div className="space-y-4 w-full">
-                {socialLinks.map((link, index) => (
-                  <a
-                    key={index}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center gap-4 p-3 rounded-lg transition-all duration-300 ${link.bgColor} group`}
-                  >
-                    <div className={`text-3xl text-gray-600 ${link.color} transition-colors duration-300`}>
-                      {link.icon}
-                    </div>
-                    <span className={`text-lg font-semibold text-gray-700 ${link.color} transition-colors duration-300`}>
-                      {link.name}
-                    </span>
+          {/* ② Quick Links ───────────────────────────────── */}
+          <div className="flex flex-col items-end">
+            <h4 className="font-bold text-base mb-4" style={headingStyle}>روابط سريعة</h4>
+            <ul className="space-y-2">
+              {quickLinks.map(({ label, href, Icon }) => (
+                <li key={label}>
+                  <a href={href} className={linkCls}>
+                    <Icon size={14} className="shrink-0" />
+                    <span>{label}</span>
                   </a>
-                ))}
-              </div>
-            </div>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Divider */}
-          <div className="border-t-2 border-gradient-to-r from-transparent via-gray-300 to-transparent mb-8"></div>
+          {/* ③ Services ─────────────────────────────────── */}
+          <div className="flex flex-col items-end">
+            <h4 className="font-bold text-base mb-4" style={headingStyle}>خدماتنا</h4>
+            <ul className="space-y-2">
+              {services.map(({ label, Icon }) => (
+                <li key={label} className="flex items-center gap-2 text-white/70 text-sm py-0.5">
+                  <Icon size={14} className="shrink-0" style={{ color: GOLD }} />
+                  <span>{label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Quick Links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            
+          {/* ④ Stages ───────────────────────────────────── */}
+          <div className="flex flex-col items-end">
+            <h4 className="font-bold text-base mb-4" style={headingStyle}>المراحل الدراسية</h4>
+            <ul className="space-y-2">
+              {stages.map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} className={linkCls}>
+                    <span>{label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-            <div className='flex flex-col items-end'>
-              <h4 className="font-bold text-[#2d839b] mb-3 text-lg">روابط سريعة</h4>
-              <ul className="space-y-2 text-gray-600">
-                <li><a href="/" className="hover:text-[#2d839b] transition-colors">الرئيسية</a></li>
-                <li><a href="/#books" className="hover:text-[#2d839b] transition-colors">الكتب</a></li>
-                <li><a href="/myorder" className="hover:text-[#2d839b] transition-colors">طلباتي</a></li>
-              </ul>
+            {/* Contact number */}
+            <div className="mt-5 flex items-center gap-2 text-white/80">
+              <a
+                href="tel:01069571111"
+                className="flex items-center gap-2 text-sm font-bold hover:text-yellow-300 transition-colors duration-200"
+              >
+                <IconPhone size={14} style={{ color: GOLD }} />
+                <span dir="ltr">01069571111</span>
+              </a>
             </div>
-
-          
-
-            
-
-              <div className='flex flex-col items-end'>
-              <h4 className="font-bold text-[#2d839b] mb-3 text-lg">خدماتنا</h4>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center gap-2">✓ توصيل سريع</li>
-                <li className="flex items-center gap-2">✓ خصومات مميزة</li>
-                <li className="flex items-center gap-2">✓ جودة مضمونة</li>
-              </ul>
-            </div>
-
-
-            <div className='flex flex-col items-end'>
-              <h4 className="font-bold text-[#2d839b] mb-3 text-lg">المراحل الدراسية</h4>
-              <ul className="space-y-2 text-gray-600">
-                <li><a href="/#books" className="hover:text-[#2d839b] transition-colors">الابتدائية</a></li>
-                <li><a href="/#books" className="hover:text-[#2d839b] transition-colors">الإعدادية</a></li>
-                <li><a href="/#books" className="hover:text-[#2d839b] transition-colors">الثانوية</a></li>
-              </ul>
+            <div className="mt-1 flex items-center gap-2 text-white/60 text-xs">
+              <IconLocation size={13} style={{ color: '#66CBBD' }} />
+              <span>جميع محافظات مصر</span>
             </div>
           </div>
 
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="bg-gradient-to-r from-[#2d839b] via-[#2a7a90] to-[#2d839b] py-6 mt-8">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-               <div className="flex gap-4 text-white/80 text-sm">
-                <a href="#" className="hover:text-white transition-colors">سياسة الخصوصية</a>
-                <span>|</span>
-                <a href="#" className="hover:text-white transition-colors">الشروط والأحكام</a>
-              </div>
-              <p className="text-white text-center md:text-right text-lg font-semibold">
-                © {getYear()} مكتبة الأمل – جميع الحقوق محفوظة
-              </p>
-             
-            </div>
+      {/* ── Bottom bar ─────────────────────────────────────── */}
+      <div
+        className="border-t py-4 px-5"
+        style={{ borderColor: 'rgba(255,255,255,0.08)', background: 'rgba(0,0,0,0.18)' }}
+      >
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
+          <p className="text-white/50 text-xs">
+            © {year} مكتبة الأمل — جميع الحقوق محفوظة
+          </p>
+          <div className="flex items-center gap-1 text-white/40 text-xs">
+            <span>صُنع بـ</span>
+            <IconHeart size={12} style={{ color: GOLD }} />
+            <span>لطلاب مصر</span>
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+
+    </footer>
   );
 }
 

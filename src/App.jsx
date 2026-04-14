@@ -19,8 +19,13 @@ import ProtuctedRoute from './pages/myOrders/ProtuctedRoute';
 import ProtectedRoute from './pages/ConfirmOrder/ProtectedRoute';
 import ScrollToTop from './ScrollToTop';
 import { supbasecontext } from './context/SupbaseContext';
+import Button from './components/common/ui/Button';
+
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
 const FB_PIXEL_ID = '1154855260177771';
+
+const queryClient = new QueryClient()
 
 function App() {
   const { areHeaderImagesReady, getImgHeader, headerImages } = useContext(supbasecontext);
@@ -89,9 +94,9 @@ function App() {
       <div className='flex items-center justify-center h-screen flex-col gap-5'>
         <Lottie animationData={Errorlotie} className='w-40' loop={true} />
         <Link to='/'>
-          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+          <Button className='rounded-lg'>
             back to home page
-          </button>
+          </Button>
         </Link>
       </div>
     );
@@ -137,7 +142,9 @@ function App() {
 
   return (
     <>
+      <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      </QueryClientProvider>
       <Toaster
         containerStyle={{
           zIndex: 99999999,

@@ -47,8 +47,8 @@
 .btn-primary,
 .btn-primary.disabled,
 .btn-primary:disabled {
-    background-color: #4466f2 !important;
-    border-color: #4466f2 !important;
+    background-color: var(--brand-primary-dark) !important;
+    border-color: var(--brand-primary-dark) !important;
 }
 
 @keyframes active-border-flow {
@@ -91,7 +91,7 @@
     background-clip: padding-box;
     z-index: 1;
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3) !important;
+    box-shadow: 0 0 20px rgba(46, 158, 152, 0.24) !important;
     padding: 1px;
     overflow: hidden;
 }
@@ -104,10 +104,10 @@
     left: -2.5px;
     right: -2.5px;
     background: linear-gradient(45deg,
-            #367def,
-            #56d8c7,
-            #128f65,
-            #2b66c5);
+            #4EC4BD,
+            #FFD43B,
+            #1D7A75,
+            #2E9E98);
     background-size: 200% 200%;
     z-index: -1;
     border-radius: 10px;
@@ -131,10 +131,10 @@
     left: -2.5px;
     right: -2.5px;
     background: linear-gradient(45deg,
-            #367def,
-            #56d8c7,
-            #128f65,
-            #2b66c5);
+            #4EC4BD,
+            #FFD43B,
+            #1D7A75,
+            #2E9E98);
     background-size: 200% 200%;
     z-index: -1;
     /* border-radius: 10px; */

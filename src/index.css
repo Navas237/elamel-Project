@@ -1,24 +1,291 @@
 @import "tailwindcss";
 
+/* ============================================================
+   مكتبة الأمل — Design System v2.0
+   ============================================================
+   الألوان مستخرجة من اللوجو الرسمي:
+   • Primary  : Teal    #4EC4BD  (الأيقونة الزرقاء)
+   • Accent   : Golden  #FFD43B  (الأيقونة الذهبية)
+   الخط       : Cairo   (أقرب خط Google لشكل حروف اللوجو)
+   ============================================================ */
 
+/* ── Google Fonts — Cairo ─────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
 
-.flex-center {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+/* ── Design Tokens ────────────────────────────────────────── */
+:root {
 
+  /* ── Brand: Teal Shade Scale ───────────────────────────── */
+  --teal-50:   #F0FBFA;   /* خلفية فاتحة جداً */
+  --teal-100:  #CCEEE9;   /* subtle tint    */
+  --teal-200:  #99DDD3;   /* borders/dividers */
+  --teal-300:  #66CBBd;   /* icons / light  */
+  --teal-400:  #4EC4BD;   /* brand-primary   */
+  --teal-500:  #2E9E98;   /* brand-primary-dark */
+  --teal-600:  #1D7A75;   /* brand-primary-darker */
+  --teal-700:  #135C58;   /* dark sections */
+  --teal-800:  #0D4A47;   /* deepest / nav dark */
+
+  /* Aliases (backwards-compatible) */
+  --brand-primary:        var(--teal-400);
+  --brand-primary-dark:   var(--teal-500);
+  --brand-primary-darker: var(--teal-600);
+  --brand-primary-light:  var(--teal-50);
+  --brand-primary-glow:   rgba(78, 196, 189, 0.22);
+
+  /* ── Brand: Golden Accent (from logo icon v2) ───────────── */
+  --brand-accent:         #FFD43B;
+  --brand-accent-dark:    #F0B800;
+  --brand-accent-darker:  #C99A00;
+  --brand-accent-light:   #FFF8D6;
+  --brand-accent-glow:    rgba(255, 212, 59, 0.25);
+
+  /* ── Semantic Colors ────────────────────────────────────── */
+  --brand-success:        #22C55E;
+  --brand-success-dark:   #16A34A;
+  --brand-success-light:  #DCFCE7;
+
+  --brand-danger:         #EF4444;
+  --brand-danger-dark:    #DC2626;
+  --brand-danger-light:   #FEE2E2;
+
+  --brand-warning:        #F97316;
+  --brand-warning-light:  #FFEDD5;
+
+  /* ── Neutral ────────────────────────────────────────────── */
+  --gray-50:   #F7F9FA;
+  --gray-100:  #EFF2F4;
+  --gray-200:  #E2E8EC;
+  --gray-300:  #CBD5DA;
+  --gray-400:  #94A3B0;
+  --gray-500:  #64748B;
+  --gray-600:  #475569;
+  --gray-700:  #334155;
+  --gray-800:  #1E293B;
+  --gray-900:  #0F172A;
+
+  /* Navy for dark UI elements */
+  --navy:      #1A2B35;
+  --navy-dark: #0F1D24;
+
+  /* ── Surfaces ───────────────────────────────────────────── */
+  --surface-bg:      #F4F7F8;   /* خلفية الصفحة — subtle teal tint */
+  --surface-card:    #FFFFFF;
+  --surface-overlay: rgba(15, 23, 42, 0.55);
+
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-primary:  'Cairo', sans-serif;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+
+  /* ── Spacing (8pt grid) ─────────────────────────────────── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* ── Border Radius ──────────────────────────────────────── */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.75rem;
+  --radius-lg:   1rem;
+  --radius-xl:   1.5rem;
+  --radius-2xl:  2rem;
+  --radius-3xl:  3rem;
+  --radius-full: 9999px;
+
+  /* ── Shadows ────────────────────────────────────────────── */
+  --shadow-sm:    0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:    0 4px 8px rgba(0,0,0,.06), 0 2px 4px rgba(0,0,0,.04);
+  --shadow-lg:    0 10px 20px rgba(0,0,0,.08), 0 4px 6px rgba(0,0,0,.04);
+  --shadow-xl:    0 20px 30px rgba(0,0,0,.09), 0 8px 12px rgba(0,0,0,.04);
+  --shadow-brand: 0 4px 16px var(--brand-primary-glow);
+  --shadow-gold:  0 4px 16px var(--brand-accent-glow);
+
+  /* ── Transitions ─────────────────────────────────────────── */
+  --transition-fast:   120ms ease;
+  --transition-base:   220ms ease;
+  --transition-slow:   380ms ease;
+
+  /* ── Gradients ──────────────────────────────────────────── */
+  --gradient-brand:   linear-gradient(135deg, #4EC4BD 0%, #2E9E98 100%);
+  --gradient-brand-r: linear-gradient(135deg, #2E9E98 0%, #4EC4BD 100%);
+  --gradient-gold:    linear-gradient(135deg, #FFD43B 0%, #F0B800 100%);
+  --gradient-surface: linear-gradient(140deg, #F4F7F8 0%, #EBF4F4 100%);
+  --gradient-card:    linear-gradient(180deg, #fff 0%, #F7FCFC 100%);
+  --gradient-dark:    linear-gradient(160deg, #1A2B35 0%, #0F1D24 100%);
+
+  /* Functional UI roles */
+  --color-page-bg:          #FCFEFE;
+  --color-page-bg-soft:     #F6FBFB;
+  --color-surface-muted:    #F7FBFB;
+  --color-card-border:      var(--teal-100);
+  --color-card-border-strong: var(--teal-200);
+  --color-navbar:           linear-gradient(135deg, #1D7A75 0%, #135C58 55%, #0D4A47 100%);
+  --color-footer:           linear-gradient(180deg, #135C58 0%, #0D4A47 100%);
+  --color-bottomnav:        linear-gradient(90deg, #1D7A75 0%, #2E9E98 55%, #1D7A75 100%);
+  --color-primary-button:   linear-gradient(135deg, #2E9E98 0%, #1D7A75 100%);
+  --color-primary-button-hover: linear-gradient(135deg, #1D7A75 0%, #135C58 100%);
+  --color-outline-border:   var(--teal-300);
+  --color-outline-soft:     #F2FBFA;
+  --color-input-border:     #D7E9E7;
+  --color-input-border-focus: var(--teal-400);
+  --color-input-ring:       rgba(78, 196, 189, 0.14);
+  --color-info-soft:        var(--teal-50);
+  --color-info-text:        var(--teal-600);
+  --color-info-border:      var(--teal-400);
 }
 
+/* ── Base Reset ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
-body,
-html {
-   touch-action: manipulation;
-   /* height: 5000px; */
+body, html {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  background-color: var(--color-page-bg);
+  color: var(--gray-800);
+  overflow-x: hidden;
+  touch-action: manipulation;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  line-height: 1.6;
+}
 
-   font-family: "Tajawal", sans-serif;
-   font-weight: 400;
-   font-style: normal;
-   overflow-x: hidden;
-   background-color: #f5f6fa;
+/* ── Global Utilities ─────────────────────────────────────── */
+.flex-center  { display: flex; justify-content: center; align-items: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.stack        { display: flex; flex-direction: column; }
 
+/* ── Color Utilities ──────────────────────────────────────── */
+.text-brand   { color: var(--brand-primary); }
+.text-gold    { color: var(--brand-accent-dark); }
+.text-success { color: var(--brand-success); }
+.text-danger  { color: var(--brand-danger); }
+.text-muted   { color: var(--gray-500); }
+
+.bg-brand     { background: var(--gradient-brand); }
+.bg-gold      { background: var(--gradient-gold); }
+.bg-surface   { background-color: var(--surface-bg); }
+.bg-brand-soft{ background-color: var(--brand-primary-light); }
+.bg-page      { background-color: var(--color-page-bg); }
+.bg-surface-soft { background-color: var(--color-surface-muted); }
+
+/* ── Card Base ────────────────────────────────────────────── */
+.card-base {
+  background: var(--surface-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-100);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+.card-base:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-3px);
+}
+
+/* ── Active Offer card glow ───────────────────────────────── */
+.active-offer-card {
+  position: relative;
+  border: 1.5px solid var(--brand-primary) !important;
+  box-shadow: 0 0 18px var(--brand-primary-glow) !important;
+  transform: scale(1.04);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ── Discount animated border ─────────────────────────────── */
+.discount-anmotion-border {
+  position: relative;
+  padding: 1.5px;
+  overflow: hidden;
+  z-index: 1;
+}
+.discount-anmotion-border::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(45deg, var(--brand-primary), #FFD43B, var(--brand-success), var(--brand-primary));
+  background-size: 300% 300%;
+  animation: border-spin 4s ease infinite;
+  z-index: -1;
+}
+
+/* ── Offer badge card animation ───────────────────────────── */
+.card-anmtion { transition: all var(--transition-base); }
+
+/* ── Page load animation ──────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeup { animation: fadeUp 0.38s ease forwards; }
+
+/* ── Gradient border spin ─────────────────────────────────── */
+@keyframes border-spin {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Skeleton shimmer ─────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
+  background-size: 1200px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--radius-md);
+}
+
+/* ── Focus Ring ───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── RTL scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--gray-100); }
+::-webkit-scrollbar-thumb {
+  background: var(--brand-primary);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--brand-primary-dark); }
+
+/* ── Selection ────────────────────────────────────────────── */
+::selection {
+  background-color: var(--brand-primary-light);
+  color: var(--brand-primary-darker);
+}
+
+/* ── Images ───────────────────────────────────────────────── */
+img { max-width: 100%; height: auto; }
+
+/* ── Old Cart CSS reset (keep compatibility) ──────────────── */
+.trbody td { text-align: center; }
+.gradent:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-primary,
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background-color: var(--brand-primary-dark) !important;
+  border-color: var(--brand-primary-dark) !important;
 }
