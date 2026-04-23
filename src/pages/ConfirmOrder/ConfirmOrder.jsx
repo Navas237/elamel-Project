@@ -531,7 +531,7 @@ function ConfirmOrder() {
           </div>
 
           {/* Main Form Card */}
-          <div className='bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden border' style={{ borderColor: 'var(--color-card-border)' }}>
+          <div className='bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-xl overflow-hidden border' style={{ borderColor: 'var(--color-card-border)' }}>
             <div className='h-1.5 sm:h-2' style={{background:'var(--color-primary-button)'}}></div>
 
             <div className='p-4 sm:p-8 md:p-10 lg:p-12'>

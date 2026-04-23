@@ -62,7 +62,7 @@ export default function ConfirmOrderNew() {
                     </div>
 
                     {/* Main Form Card */}
-                    <div className='bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden'>
+                    <div className='bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-xl overflow-hidden'>
                         <div className='bg-gradient-to-r from-blue-500 to-purple-600 h-1.5 sm:h-2'></div>
 
                         <div className='p-4 sm:p-8 md:p-10'>

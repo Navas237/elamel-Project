@@ -42,8 +42,8 @@ const stages = [
 function Footer() {
   const year = new Date().getFullYear();
 
-  /* shared link style inside dark footer */
-  const linkCls = 'flex items-center gap-2 text-white/70 hover:text-yellow-300 transition-colors duration-200 text-sm py-0.5';
+  /* shared link style inside light footer */
+  const linkCls = 'flex items-center gap-2 transition-colors duration-200 text-sm py-0.5';
   const headingStyle = { color: GOLD };
 
   return (
@@ -58,11 +58,11 @@ function Footer() {
 
           {/* ① Brand ─────────────────────────────────────── */}
           <div className="sm:col-span-2 md:col-span-1 flex flex-col items-center md:items-start">
-            <div className="w-24 mb-4 drop-shadow-lg">
+            <div className="w-24 mb-4">
               <img src={logo} alt="مكتبة الأمل" className="w-full object-contain hover:scale-105 transition-transform duration-300" />
             </div>
-            <h2 className="font-extrabold text-white text-lg mb-2">مكتبة الأمل</h2>
-            <p className="text-white/60 text-sm leading-relaxed text-center md:text-right">
+            <h2 className="font-extrabold text-lg mb-2" style={{ color: 'var(--teal-700)' }}>مكتبة الأمل</h2>
+            <p className="text-sm leading-relaxed text-center md:text-right" style={{ color: 'var(--gray-500)' }}>
               وجهتك الأولى للكتب الدراسية بجودة عالية وأسعار تنافسية لجميع المراحل.
             </p>
 
@@ -71,8 +71,8 @@ function Footer() {
               <a
                 href="https://www.facebook.com/Amaleducationalstore?locale=ar_AR"
                 target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition duration-200 hover:scale-110 hover:-translate-y-0.5"
-                style={{ background: '#1877F2' }}
+                className="w-9 h-9 rounded-xl flex items-center justify-center transition duration-200 hover:scale-105 hover:-translate-y-0.5 border"
+                style={{ background: '#fff', borderColor: '#cccccc', color: '#1877F2' }}
                 title="فيسبوك"
               >
                 <IconFacebook size={17} />
@@ -80,16 +80,16 @@ function Footer() {
               <a
                 href="https://api.whatsapp.com/send?phone=201069571111"
                 target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition duration-200 hover:scale-110 hover:-translate-y-0.5"
-                style={{ background: '#25D366' }}
+                className="w-9 h-9 rounded-xl flex items-center justify-center transition duration-200 hover:scale-105 hover:-translate-y-0.5 border"
+                style={{ background: '#fff', borderColor: '#cccccc', color: '#25D366' }}
                 title="واتساب"
               >
                 <IconWhatsapp size={17} />
               </a>
               <a
                 href="tel:01069571111"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition duration-200 hover:scale-110 hover:-translate-y-0.5"
-                style={{ background: 'var(--gradient-brand)' }}
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-white transition duration-200 hover:scale-105 hover:-translate-y-0.5"
+                style={{ background: 'var(--teal-400)' }}
                 title="اتصل بنا"
               >
                 <IconPhone size={17} />
@@ -103,8 +103,11 @@ function Footer() {
             <ul className="space-y-2">
               {quickLinks.map(({ label, href, Icon }) => (
                 <li key={label}>
-                  <a href={href} className={linkCls}>
-                    <Icon size={14} className="shrink-0" />
+                  <a href={href} className={linkCls}
+                    style={{ color: 'var(--gray-600)' }}
+                    onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-500)'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'var(--gray-600)'}>
+                    <Icon size={14} className="shrink-0" style={{ color: 'var(--teal-400)' }} />
                     <span>{label}</span>
                   </a>
                 </li>
@@ -117,7 +120,7 @@ function Footer() {
             <h4 className="font-bold text-base mb-4" style={headingStyle}>خدماتنا</h4>
             <ul className="space-y-2">
               {services.map(({ label, Icon }) => (
-                <li key={label} className="flex items-center gap-2 text-white/70 text-sm py-0.5">
+                <li key={label} className="flex items-center gap-2 text-sm py-0.5" style={{ color: 'var(--gray-600)' }}>
                   <Icon size={14} className="shrink-0" style={{ color: GOLD }} />
                   <span>{label}</span>
                 </li>
@@ -131,7 +134,10 @@ function Footer() {
             <ul className="space-y-2">
               {stages.map(({ label, href }) => (
                 <li key={label}>
-                  <a href={href} className={linkCls}>
+                  <a href={href} className={linkCls}
+                    style={{ color: 'var(--gray-600)' }}
+                    onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-500)'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'var(--gray-600)'}>
                     <span>{label}</span>
                   </a>
                 </li>
@@ -139,16 +145,19 @@ function Footer() {
             </ul>
 
             {/* Contact number */}
-            <div className="mt-5 flex items-center gap-2 text-white/80">
+            <div className="mt-5 flex items-center gap-2">
               <a
                 href="tel:01069571111"
-                className="flex items-center gap-2 text-sm font-bold hover:text-yellow-300 transition-colors duration-200"
+                className="flex items-center gap-2 text-sm font-bold transition-colors duration-200"
+                style={{ color: 'var(--gray-700)' }}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-500)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--gray-700)'}
               >
                 <IconPhone size={14} style={{ color: GOLD }} />
                 <span dir="ltr">01069571111</span>
               </a>
             </div>
-            <div className="mt-1 flex items-center gap-2 text-white/60 text-xs">
+            <div className="mt-1 flex items-center gap-2 text-xs" style={{ color: 'var(--gray-400)' }}>
               <IconLocation size={13} style={{ color: 'var(--teal-300)' }} />
               <span>جميع محافظات مصر</span>
             </div>
@@ -160,13 +169,13 @@ function Footer() {
       {/* ── Bottom bar ─────────────────────────────────────── */}
       <div
         className="border-t py-4 px-5"
-        style={{ borderColor: 'rgba(255,255,255,0.08)', background: 'rgba(0,0,0,0.18)' }}
+        style={{ borderColor: '#cccccc', background: '#f0f0f0' }}
       >
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
-          <p className="text-white/50 text-xs">
+          <p className="text-xs" style={{ color: 'var(--gray-400)' }}>
             © {year} مكتبة الأمل — جميع الحقوق محفوظة
           </p>
-          <div className="flex items-center gap-1 text-white/40 text-xs">
+          <div className="flex items-center gap-1 text-xs" style={{ color: 'var(--gray-400)' }}>
             <span>صُنع بـ</span>
             <IconHeart size={12} style={{ color: GOLD }} />
             <span>لطلاب مصر</span>

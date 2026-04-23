@@ -184,7 +184,7 @@ function Cart() {
                     {/* ── Desktop: table wrapper ────────────────── */}
                     <div className="hidden md:block w-full max-w-6xl bg-white rounded-2xl shadow-xl overflow-hidden">
                         {/* Table header */}
-                        <div className="text-white grid grid-cols-8 gap-4 px-6 py-4 font-bold text-lg" style={{ background: 'var(--color-primary-button)' }}>
+                        <div className="grid grid-cols-8 gap-4 px-6 py-4 font-bold text-base border-b" style={{ background: '#F7F9FA', borderColor: '#cccccc', color: 'var(--teal-700)' }}>
                             {['حذف', 'الإجمالي', 'الكمية', 'بعد الخصم', 'الخصم', 'قبل الخصم'].map(h => (
                                 <div key={h} className="text-center">{h}</div>
                             ))}
@@ -261,7 +261,7 @@ function Cart() {
                 /* ── Empty cart ──────────────────────────────── */
                 <div className="flex justify-center items-center mt-[120px] px-4">
                     <div className="flex flex-col items-center gap-5 p-10 bg-white rounded-3xl shadow-xl max-w-2xl w-full text-center">
-                        <div className="animate-bounce">
+                        <div className="animate-pulse">
                             <img src="https://i.imgur.com/dCdflKN.png" width="170" height="170" alt="عربة فارغة" className="img-fluid" />
                         </div>
                         <h3 className="text-3xl font-bold text-gray-800">العربة فارغة</h3>

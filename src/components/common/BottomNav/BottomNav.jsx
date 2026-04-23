@@ -16,8 +16,8 @@ function BottomNav({ children }) {
 
   return (
     <div
-      className="BottomNav h-[58px] flex items-center w-full shadow-[0_-4px_20px_rgba(0,0,0,0.12)]"
-      style={{ background: 'var(--color-bottomnav)' }}
+      className="BottomNav h-[58px] flex items-center w-full border-t"
+      style={{ background: 'var(--color-bottomnav)', borderColor: '#cccccc', boxShadow: '0 -2px 10px rgba(0,0,0,0.05)' }}
     >
       <div className="flex items-center px-4 gap-3 w-full h-full">
 
@@ -25,31 +25,31 @@ function BottomNav({ children }) {
         <button
           onClick={() => { navigate(-1); setTimeout(() => window.scrollTo(0, 0), 100); }}
           className="flex gap-2 items-center font-semibold text-sm group transition duration-200"
-          style={{ color: 'rgba(255,255,255,0.9)' }}
+          style={{ color: 'var(--teal-600)' }}
         >
-          {/* دائرة الأيقونة بـ Gold عند الـ hover */}
+          {/* circle icon container — teal on hover */}
           <span
-            className="w-8 h-8 rounded-full flex items-center justify-center transition duration-250 group-hover:scale-110"
-            style={{ background: 'rgba(255,255,255,0.12)' }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,212,59,0.22)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; }}
+            className="w-8 h-8 rounded-full flex items-center justify-center transition duration-250 group-hover:scale-105"
+            style={{ background: 'var(--teal-50)' }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'var(--teal-100)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'var(--teal-50)'; }}
           >
-            <IconArrowRight size={18} color="#fff" />
+            <IconArrowRight size={18} color="var(--teal-500)" />
           </span>
-          <span className="hidden sm:inline group-hover:text-yellow-300 transition-colors duration-200">
+          <span className="hidden sm:inline group-hover:opacity-70 transition-opacity duration-200">
             الرجوع للصفحة السابقة
           </span>
-          <span className="sm:hidden group-hover:text-yellow-300 transition-colors duration-200">
+          <span className="sm:hidden group-hover:opacity-70 transition-opacity duration-200">
             رجوع
           </span>
         </button>
 
         {/* Divider */}
-        {children && <div className="h-5 w-px mx-1" style={{ background: 'rgba(255,255,255,0.2)' }} />}
+        {children && <div className="h-5 w-px mx-1" style={{ background: '#cccccc' }} />}
 
         {/* Children */}
         {children && (
-          <span className="text-white/85 font-semibold text-sm truncate">{children}</span>
+          <span className="font-semibold text-sm truncate" style={{ color: 'var(--gray-700)' }}>{children}</span>
         )}
 
         {/* Gold accent dot — يبرز اللون الثاني بشكل خفيف */}

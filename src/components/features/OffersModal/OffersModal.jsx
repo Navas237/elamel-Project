@@ -27,7 +27,7 @@ const OffersModal = ({ isOpen, onClose }) => {
                         initial={{ scale: 0.9, opacity: 0, y: 20 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                        className="relative w-full max-w-[380px] overflow-hidden rounded-3xl border bg-white shadow-2xl"
+                        className="relative w-full max-w-[380px] overflow-hidden rounded-3xl border bg-white shadow-xl"
                         style={{ borderColor: 'var(--color-card-border)' }}
                     >
                         <div
@@ -68,7 +68,7 @@ const OffersModal = ({ isOpen, onClose }) => {
                                         style={{ background: 'var(--color-surface-muted)', borderColor: 'var(--color-card-border)' }}
                                     >
                                         <div className="flex flex-row-reverse items-center gap-3">
-                                            <span className="text-xl transition-transform group-hover:scale-110">{offer.icon}</span>
+                                            <span className="text-xl transition-transform group-hover:scale-105">{offer.icon}</span>
                                             <div className="text-right">
                                                 <p className="mb-1 text-[10px] font-medium leading-none text-gray-500">{offer.condition}</p>
                                                 <div className="flex flex-row-reverse gap-2 text-xs font-bold leading-tight text-gray-900 md:text-sm">

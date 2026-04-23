@@ -8,16 +8,16 @@ const variants = {
   primary: 'text-white',
   success: 'text-white',
   gold:    'text-gray-900 font-extrabold',
-  outline: 'bg-white border-2 text-[var(--teal-600)] hover:bg-[var(--color-outline-soft)]',
-  neutral: 'bg-[var(--color-surface-muted)] text-gray-600 hover:bg-white border border-gray-200',
+  outline: 'bg-white border-2 text-[var(--teal-600)] hover:bg-[var(--teal-50)]',
+  neutral: 'bg-white text-gray-700 hover:bg-gray-50 border border-[#cccccc]',
   danger:  'text-white',
 };
 
 const variantStyle = {
-  primary: { background: 'var(--color-primary-button)' },
-  success: { background: 'var(--color-primary-button)' },
+  primary: { background: 'var(--teal-400)' },
+  success: { background: 'var(--teal-400)' },
   gold:    { background: 'linear-gradient(135deg,var(--brand-accent),var(--brand-accent-dark))' },
-  outline: { borderColor: 'var(--color-outline-border)' },
+  outline: { borderColor: '#cccccc' },
   neutral: {},
   danger:  { background: 'linear-gradient(135deg,var(--brand-danger),#dc2626)' },
 };

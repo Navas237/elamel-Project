@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import MySwiper from '../../../../SwIPER/Swiper'
+import { IconBookOpen } from '../../../lib/icons'
 
 function Header() {
   useEffect(() => { window.scroll({ top: 0 }) }, [])
@@ -11,22 +12,23 @@ function Header() {
         <MySwiper />
       </div>
 
-      {/* Brand Banner */}
-      <div
-        className="text-white py-4 px-4 mb-8 rounded-b-[3rem] shadow-2xl"
-        style={{ background: 'var(--gradient-brand)' }}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="text-4xl mb-3 mt-2 animate-bounce select-none">📖</div>
-          <h1 className="text-3xl md:text-5xl font-black mb-3 tracking-tight">
+      {/* Brand Banner - Clean Overlapping Card */}
+      <div className="relative -mt-10 md:-mt-16 z-20 px-4 mb-16">
+        <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl border border-gray-100 p-6 md:p-10 text-center">
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-teal-50 flex items-center justify-center text-[var(--teal-500)] shadow-sm">
+              <IconBookOpen size={36} strokeWidth={1.5} />
+            </div>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-extrabold mb-3 text-gray-900 tracking-tight">
             مكتبة الأمل
           </h1>
-          <p className="text-lg md:text-2xl text-white/85 font-medium">
-            شريكك في النجاح الدراسي
+          <p className="text-lg md:text-xl text-gray-500 font-medium max-w-lg mx-auto">
+            شريكك الأول في النجاح والتفوق الدراسي، نوفر لك كل ما تحتاجه من كتب.
           </p>
 
-          {/* Decorative dots */}
-          <div className="flex justify-center gap-2 mt-4 mb-1">
+          {/* Decorative dots using brand color subtly */}
+          <div className="flex justify-center gap-2 mt-6">
             {[1,2,3].map(i => (
               <span
                 key={i}
@@ -34,7 +36,7 @@ function Header() {
                 style={{
                   width: i === 2 ? 24 : 8,
                   height: 8,
-                  backgroundColor: i === 2 ? 'var(--brand-accent)' : 'rgba(255,255,255,0.4)',
+                  backgroundColor: i === 2 ? 'var(--teal-500)' : 'var(--gray-200)',
                   transition: 'width 0.3s'
                 }}
               />

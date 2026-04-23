@@ -27,7 +27,7 @@ export default function CartItem({ item, discountData, onDelete, onPlus, onMinus
         <>
             <div className="hidden md:grid grid-cols-8 gap-4 px-6 py-4 items-center hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0">
                 <div className="text-center">
-                    <button aria-label="حذف العنصر" onClick={onDelete} className="text-red-400 hover:text-red-600 hover:scale-110 transition text-3xl">
+                    <button aria-label="حذف العنصر" onClick={onDelete} className="text-red-400 hover:text-red-600 hover:scale-105 transition text-3xl">
                         <MdDeleteForever />
                     </button>
                 </div>

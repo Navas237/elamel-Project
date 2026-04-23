@@ -88,7 +88,7 @@ function SingleProduct() {
           {/* Out-of-stock overlay */}
           {isOutOfStock && (
             <div className="absolute inset-0 bg-black/25 backdrop-blur-[2px] flex items-center justify-center">
-              <div className="px-6 py-3 rounded-2xl shadow-2xl rotate-[-5deg] flex items-center gap-2 font-bold text-gray-900 text-base" style={GOLD_BG}>
+              <div className="px-6 py-3 rounded-2xl shadow-xl rotate-[-5deg] flex items-center gap-2 font-bold text-gray-900 text-base" style={GOLD_BG}>
                 <span>⏳</span><span>سوف يتوفر قريباً</span>
               </div>
             </div>

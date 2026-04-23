@@ -86,7 +86,7 @@ function App() {
       <div className='flex items-center justify-center h-screen'>
         <Lottie animationData={Loadunglotie} className='w-40' loop={true} />
       </div>
-    );
+    ); 
   };
 
   const handelErrorloite = () => {

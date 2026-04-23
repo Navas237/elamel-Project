@@ -47,7 +47,7 @@ export function MyOrders() {
           className="text-center py-16 rounded-2xl border border-dashed"
           style={{ borderColor: 'var(--teal-400)', background: 'var(--color-surface-muted)' }}
         >
-          <div className="text-6xl mb-4 animate-bounce">📦</div>
+          <div className="text-6xl mb-4 animate-pulse">📦</div>
           <p className="text-gray-500 text-lg font-semibold">لا يوجد طلبات محفوظة</p>
           <p className="text-gray-400 text-sm mt-1">ابدأ التسوق وستظهر طلباتك هنا</p>
         </div>

@@ -9,9 +9,10 @@ import BookSkeleton from './uiComponents/BookSkeleton';
 import BookItem from '../../components/common/ui/cards/BookItem';
 import Filter from './uiComponents/Filter';
 import { useProducts } from '../../hooks/useProducts';
-import { IconBook } from '../../lib/icons';
+import { IconBook, IconPackage, IconBookOpen } from '../../lib/icons';
 
-/* درجة teal-50 → teal-100 للـ Books page خلفية */
+
+
 function Books() {
   const { getIds, cartloading, cartIds, trackAddToCart } = useContext(cartcontext);
   const { level, level2 } = useParams();
@@ -37,12 +38,12 @@ function Books() {
 
   const companyOptions = useMemo(() => {
     const unique = [...new Set(baseProducts?.map(p => p.company).filter(Boolean))].sort();
-    return [{ value: 'all', label: 'اسم الكتاب' }, ...unique.map(c => ({ value: c, label: c }))];
+    return [{ value: 'all', label: 'اسم الكتاب', icon: IconPackage }, ...unique.map(c => ({ value: c, label: c, icon: IconPackage }))];
   }, [baseProducts]);
 
   const typebookOptions = useMemo(() => {
     const unique = [...new Set(baseProducts?.map(p => p.typebook).filter(Boolean))].sort();
-    return [{ value: 'all', label: 'المادة' }, ...unique.map(t => ({ value: t, label: t }))];
+    return [{ value: 'all', label: 'المادة', icon: IconBookOpen }, ...unique.map(t => ({ value: t, label: t, icon: IconBookOpen }))];
   }, [baseProducts]);
 
   const filteredProducts = useMemo(() => {
@@ -54,8 +55,7 @@ function Books() {
   }, [baseProducts, selectedCompany, selectedTypebook]);
 
   return (
-    /* درجة teal-50 للخلفية — أخف من Navbar المغمق */
-    <div className="books min-h-screen mt-15 pb-24" style={{ background: 'var(--teal-50)' }}>
+    <div className="books min-h-screen mt-15 pb-24 bg-white">
       <div className="max-w-7xl mx-auto px-1 mt-[-10px] pt-0 pb-4 md:pb-8">
 
         <Filter

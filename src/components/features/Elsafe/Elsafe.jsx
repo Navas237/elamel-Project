@@ -59,7 +59,7 @@ function Elsafe() {
             <Link
               key={index}
               to={level === 'sec' && stage.grade === '3' ? `choice/${stage.grade}` : `b/${stage.grade}`}
-              className="group relative self-center bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden transform hover:-translate-y-2 border"
+              className="group relative self-center bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden transform hover:-translate-y-1 border"
               style={{ borderColor: 'var(--teal-100)' }}
             >
               {/* Hover Tint Background */}
@@ -73,7 +73,7 @@ function Elsafe() {
                 
                 {/* Number Circle Badge */}
                 <div 
-                  className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-white text-3xl md:text-4xl font-black shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300 border-4 border-white"
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-white text-3xl md:text-4xl font-black shadow-lg mb-4 group-hover:scale-105 transition-transform duration-300 border-4 border-white"
                   style={{ background: stage.p.bg }}
                 >
                   {stage.grade}

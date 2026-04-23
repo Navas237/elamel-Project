@@ -36,13 +36,13 @@ function SelectType() {
                         <Link
                             key={type.id}
                             to={type.path}
-                            className='group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition duration-300 overflow-hidden border hover:-translate-y-3'
+                            className='group relative bg-white rounded-3xl shadow-xl hover:shadow-xl transition duration-300 overflow-hidden border hover:-translate-y-1'
                             style={{ borderColor: 'var(--color-card-border)' }}
                         >
                             <div className={`absolute inset-0 bg-gradient-to-br ${type.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
 
                             <div className='relative p-8 flex flex-col items-center text-center gap-6'>
-                                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${type.gradient} flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition duration-300 shadow-lg text-5xl`}>
+                                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${type.gradient} flex items-center justify-center transform group-hover:scale-105 group-hover:rotate-3 transition duration-300 shadow-lg text-5xl`}>
                                     {type.icon}
                                 </div>
 

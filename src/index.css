@@ -69,7 +69,7 @@
   --navy-dark: #0F1D24;
 
   /* ── Surfaces ───────────────────────────────────────────── */
-  --surface-bg:      #F4F7F8;   /* خلفية الصفحة — subtle teal tint */
+  --surface-bg:      #FFFFFF;   /* خلفية الصفحة — نظيفة بيضاء */
   --surface-card:    #FFFFFF;
   --surface-overlay: rgba(15, 23, 42, 0.55);
 
@@ -124,29 +124,49 @@
   --gradient-brand:   linear-gradient(135deg, #4EC4BD 0%, #2E9E98 100%);
   --gradient-brand-r: linear-gradient(135deg, #2E9E98 0%, #4EC4BD 100%);
   --gradient-gold:    linear-gradient(135deg, #FFD43B 0%, #F0B800 100%);
-  --gradient-surface: linear-gradient(140deg, #F4F7F8 0%, #EBF4F4 100%);
-  --gradient-card:    linear-gradient(180deg, #fff 0%, #F7FCFC 100%);
+  --gradient-surface: linear-gradient(140deg, #FFFFFF 0%, #F7F9FA 100%);
+  --gradient-card:    linear-gradient(180deg, #fff 0%, #F9FAFB 100%);
   --gradient-dark:    linear-gradient(160deg, #1A2B35 0%, #0F1D24 100%);
 
-  /* Functional UI roles */
-  --color-page-bg:          #FCFEFE;
-  --color-page-bg-soft:     #F6FBFB;
-  --color-surface-muted:    #F7FBFB;
-  --color-card-border:      var(--teal-100);
-  --color-card-border-strong: var(--teal-200);
-  --color-navbar:           linear-gradient(135deg, #1D7A75 0%, #135C58 55%, #0D4A47 100%);
-  --color-footer:           linear-gradient(180deg, #135C58 0%, #0D4A47 100%);
-  --color-bottomnav:        linear-gradient(90deg, #1D7A75 0%, #2E9E98 55%, #1D7A75 100%);
-  --color-primary-button:   linear-gradient(135deg, #2E9E98 0%, #1D7A75 100%);
-  --color-primary-button-hover: linear-gradient(135deg, #1D7A75 0%, #135C58 100%);
-  --color-outline-border:   var(--teal-300);
-  --color-outline-soft:     #F2FBFA;
-  --color-input-border:     #D7E9E7;
+  /* ─────────────────────────────────────────────────────────
+     Functional UI Roles — WHITE-FIRST THEME
+     ───────────────────────────────────────────────────────── */
+
+  /* Backgrounds */
+  --color-page-bg:          #FFFFFF;
+  --color-page-bg-soft:     #F7F9FA;
+  --color-surface-muted:    #F9FAFB;
+
+  /* Borders — #ccc as the global border standard */
+  --color-card-border:        #cccccc;
+  --color-card-border-strong: #aaaaaa;
+
+  /* Navbar — pure white, teal accent strip at bottom */
+  --color-navbar:           #FFFFFF;
+
+  /* Footer — very light gray */
+  --color-footer:           #F7F9FA;
+
+  /* BottomNav — pure white */
+  --color-bottomnav:        #FFFFFF;
+
+  /* Buttons — solid teal (brand primary), no dark gradient */
+  --color-primary-button:       #4EC4BD;
+  --color-primary-button-hover: #2E9E98;
+
+  /* Outline / Soft states */
+  --color-outline-border:   var(--teal-400);
+  --color-outline-soft:     #F0FBFA;
+
+  /* Inputs */
+  --color-input-border:       #cccccc;
   --color-input-border-focus: var(--teal-400);
-  --color-input-ring:       rgba(78, 196, 189, 0.14);
-  --color-info-soft:        var(--teal-50);
-  --color-info-text:        var(--teal-600);
-  --color-info-border:      var(--teal-400);
+  --color-input-ring:         rgba(78, 196, 189, 0.14);
+
+  /* Info snippets */
+  --color-info-soft:   var(--teal-50);
+  --color-info-text:   var(--teal-600);
+  --color-info-border: var(--teal-400);
 }
 
 /* ── Base Reset ───────────────────────────────────────────── */
@@ -189,7 +209,7 @@ body, html {
   background: var(--surface-card);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--gray-100);
+  border: 1px solid #cccccc;
   transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
 .card-base:hover {

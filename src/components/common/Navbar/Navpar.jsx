@@ -11,8 +11,8 @@ import {
   IconCart, IconBook,
 } from '../../../lib/icons';
 
-const BRAND = 'var(--color-navbar)';
-const DARK  = 'var(--gradient-dark)';
+const BRAND = 'var(--color-navbar)'; // pure white
+const TEAL  = 'var(--brand-primary)';
 
 function Navpar() {
   const [menustat,  setmenustat]  = useState(false);
@@ -60,12 +60,12 @@ function Navpar() {
     { label: 'فيسبوك',   href: 'https://www.facebook.com/Amaleducationalstore?locale=ar_AR', icon: IconFacebook },
   ];
 
-  const navCls = 'flex items-center gap-1.5 text-white font-semibold text-[15px] transition duration-200 hover:text-yellow-300 hover:-translate-y-0.5';
+  const navCls = 'flex items-center gap-1.5 font-semibold text-[15px] transition duration-200 hover:-translate-y-0.5';
 
   return (
     <>
       {/* ── Navbar ─────────────────────────────────────────── */}
-      <nav className="fixed top-0 left-0 w-full z-50 shadow-lg" style={{ background: BRAND }}>
+      <nav className="fixed top-0 left-0 w-full z-50 shadow-sm border-b bg-white/95 backdrop-blur-lg border-gray-200" style={{ borderColor: 'var(--gray-200)' }}>
         <div className="w-full px-4 md:px-8 py-2.5 flex justify-between items-center gap-3">
 
           {/* LEFT — Search */}
@@ -74,9 +74,9 @@ function Navpar() {
               <button
                 aria-label="البحث"
                 onClick={() => setserchstat(true)}
-                className="text-white transition duration-200 hover:text-yellow-300 hover:scale-110 p-1"
+                className="transition duration-200 hover:scale-105 p-1"
+                style={{ color: 'var(--teal-500)' }}
               >
-              
                 <IconSearch size={22} />
               </button>
             ) : (
@@ -99,8 +99,8 @@ function Navpar() {
                     e.currentTarget.style.boxShadow =
                       '0 0 0 3px rgba(255, 212, 59, 0.18), 0 8px 18px rgba(13, 74, 71, 0.12)'
                   }}
-                  className="w-44 md:w-64 px-4 py-1.5 rounded-full text-sm outline-none shadow-md bg-white transition duration-200"
-                  style={{ boxShadow: '0 0 0 3px rgba(255, 212, 59, 0.18), 0 8px 18px rgba(13, 74, 71, 0.12)' }}
+                  className="w-44 md:w-64 px-4 py-1.5 rounded-full text-sm outline-none bg-white transition duration-200"
+                  style={{ border: '1px solid #cccccc', boxShadow: '0 0 0 2px rgba(78, 196, 189, 0.15)' }}
                 />
               </motion.div>
             )}
@@ -110,7 +110,7 @@ function Navpar() {
               {serchKey && (
                 <motion.div
                   initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-                  className="absolute top-full left-0 mt-2 w-72 max-h-80 overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 border"
+                  className="absolute top-full left-0 mt-2 w-72 max-h-80 overflow-y-auto bg-white rounded-2xl shadow-xl z-50 border"
                   style={{ borderColor: 'var(--color-card-border)' }}
                 >
                   {isLoading ? (
@@ -142,96 +142,33 @@ function Navpar() {
           {/* CENTER — Logo */}
           <a href="#home" onClick={scrollHome} className="flex items-center gap-2.5 md:ml-20 lg:ml-28 shrink-0">
             <img src={logo} alt="مكتبة الأمل"
-              className="w-11 h-11 md:w-[52px] md:h-[52px] hover:scale-105 transition-transform duration-300 drop-shadow-md" />
-            <span className="text-white hidden md:block font-bold text-lg tracking-wide">مكتبة الأمل</span>
+              className="w-11 h-11 md:w-[52px] md:h-[52px] hover:scale-105 transition-transform duration-300 drop-shadow-sm" />
+            <span className="hidden md:block font-bold text-lg tracking-wide" style={{ color: 'var(--teal-600)' }}>مكتبة الأمل</span>
           </a>
 
           {/* RIGHT — Desktop links */}
           <div className="hidden sm:flex items-center gap-4 lg:gap-5">
-            <Link to={location.pathname === '/' ? '#home' : '/#home'} onClick={scrollHome} className={navCls}>
+            <Link to={location.pathname === '/' ? '#home' : '/#home'} onClick={scrollHome}
+              className={navCls} style={{ color: 'var(--teal-600)' }}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-400)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--teal-600)'}>
               <IconHome size={18} /><span>الرئيسية</span>
             </Link>
-            <a href="#contact" className={navCls}>
+            <a href="#contact" className={navCls}
+              style={{ color: 'var(--teal-600)' }}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-400)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--teal-600)'}>
               <IconPhone size={18} /><span>تواصل معنا</span>
             </a>
-            <Link to="/myorder" className={navCls}>
+            <Link to="/myorder" className={navCls}
+              style={{ color: 'var(--teal-600)' }}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-400)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--teal-600)'}>
               <IconOrders size={18} /><span>طلباتي</span>
             </Link>
           </div>
-
-          {/* MOBILE — Hamburger */}
-          <button
-            onClick={() => setmenustat(!menustat)}
-            className="sm:hidden text-white transition duration-200 hover:text-yellow-300"
-            aria-label="القائمة"
-          >
-            <IconMenu size={26} />
-          </button>
         </div>
       </nav>
-
-      {/* ── Mobile Panel ───────────────────────────────────── */}
-      <AnimatePresence>
-        {menustat && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              onClick={() => setmenustat(false)}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-            />
-            <motion.div
-              ref={dropMenu}
-              initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 w-72 h-full shadow-2xl z-50 overflow-y-auto"
-              style={{ background: DARK }}
-            >
-              {/* Header */}
-              <div className="flex justify-between items-center p-5 border-b border-white/10">
-                <button aria-label="إغلاق القائمة" onClick={() => setmenustat(false)}
-                  className="text-white hover:text-red-400 transition-colors duration-200">
-                  <IconClose size={26} />
-                </button>
-                <img src={logo} alt="Logo" className="w-12 h-12 drop-shadow-md" />
-              </div>
-
-              {/* Links */}
-              <ul className="p-5 space-y-2">
-                {mobileLinks.map((link, i) => {
-                  const Icon = link.icon;
-                  const cls = "flex items-center justify-end gap-3 text-white text-base font-semibold hover:text-yellow-300 transition-colors duration-200 p-3 rounded-xl hover:bg-white/10";
-                  return (
-                    <motion.li key={i}
-                      initial={{ x: 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: i * 0.07 }}
-                    >
-                      {link.href ? (
-                        <a href={link.href} target="_blank" rel="noopener noreferrer"
-                          onClick={() => setmenustat(false)} className={cls}>
-                          <span>{link.label}</span>
-                          <Icon size={20} />
-                        </a>
-                      ) : (
-                        <Link to={link.to}
-                          onClick={() => { setmenustat(false); link.onClick?.(); }}
-                          className={cls}>
-                          <span>{link.label}</span>
-                          <Icon size={20} />
-                        </Link>
-                      )}
-                    </motion.li>
-                  );
-                })}
-              </ul>
-
-              {/* Footer */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/5">
-                <p className="text-white/60 text-center text-xs">مكتبة الأمل دائماً في خدمتكم ❤️</p>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
 
       {/* Spacer */}
       <div className="h-14 md:h-[58px]" />

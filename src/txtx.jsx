@@ -76,7 +76,7 @@
                                             <div key={index} className="grid grid-cols-8 gap-4 p-6 items-center hover:bg-gray-50 transition-colors duration-200">
                                                 <div className="text-center">
                                                     <button
-                                                        className="text-red-500 hover:text-red-700 hover:scale-110 transition duration-200 text-3xl"
+                                                        className="text-red-500 hover:text-red-700 hover:scale-105 transition duration-200 text-3xl"
                                                         onClick={() => deletCart(value)}
                                                     >
                                                         <MdDeleteForever />
@@ -95,7 +95,7 @@
                                                     <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-3 py-2">
                                                         <button
                                                             // disabled={value.stoke < value.quantity }
-                                                            className="bg-blue-500 hover:bg-blue-600 text-white w-8 h-8 rounded-full flex gap-1 items-center justify-center font-bold transition duration-200 hover:scale-110"
+                                                            className="bg-blue-500 hover:bg-blue-600 text-white w-8 h-8 rounded-full flex gap-1 items-center justify-center font-bold transition duration-200 hover:scale-105"
                                                             onClick={() => changeCount(value.id, "plus")}
                                                         >
                                                             +
@@ -104,7 +104,7 @@
                                                             {value.quantity}
                                                         </span>
                                                         <button
-                                                            className="bg-red-500 hover:bg-red-600 text-white w-8 h-8 rounded-full flex gap-1 items-center justify-center font-bold transition duration-200 hover:scale-110"
+                                                            className="bg-red-500 hover:bg-red-600 text-white w-8 h-8 rounded-full flex gap-1 items-center justify-center font-bold transition duration-200 hover:scale-105"
                                                             onClick={() => changeCount(value.id, "menus")}
                                                         >
                                                             -
@@ -488,7 +488,7 @@
                         :
                         <div className="card-body cart mt-[120px]">
                             <div className="mt-10 col-sm-12 empty-cart-cls text-center !flex sm:justify-center gap-5 sm:!items-center flex-col !justify-center !items-center p-[40px] bg-white rounded-3xl shadow-xl max-w-2xl mx-auto">
-                                <div className="animate-bounce">
+                                <div className="animate-pulse">
                                     <img src="https://i.imgur.com/dCdflKN.png" width="170" height="170" className="img-fluid" />
                                 </div>
                                 <h3 className="text-3xl font-bold text-gray-800">العربة فارغة</h3>
