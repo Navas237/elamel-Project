@@ -34,8 +34,12 @@ export default function PriceSummary({ totalPrice, finalPrice }) {
             )}
 
             <div
-                className="flex items-center justify-between rounded-xl px-4 py-3 font-extrabold text-white"
-                style={{ background: 'var(--color-primary-button)' }}
+                className="flex items-center justify-between rounded-xl px-4 py-3 font-extrabold border"
+                style={{ 
+                    background: 'linear-gradient(135deg, #FFFDF0 0%, #FFF1B8 100%)', 
+                    borderColor: '#FFE082',
+                    color: '#854D0E' 
+                }}
             >
                 <div className="flex gap-1 text-2xl font-black">
                     <span>جنيه</span>

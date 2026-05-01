@@ -1,20 +1,21 @@
-import { useEffect, useContext, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-import { cartcontext } from '../../../context/CartCotext';
-import { supbasecontext } from '../../../context/SupbaseContext';
-import { escema, getDynamicSchema } from '../../../schemas/ConfirmOrderValidation';
+import { getDynamicSchema } from '../../../schemas/ConfirmOrderValidation';
 
 // Import split hooks and utils
 import useLocationSelection from './useLocationSelection';
 import usePriceCalculations from './usePriceCalculations';
 import useOrderSubmit from './useOrderSubmit';
 import { normalizeArabicNumbers, customSelectStyles, textFieldStyle } from '../utils/formStylesAndUtils';
+import { useCartStore } from '../../../store/useCartStore';
+import { useOffer } from '../../../hooks/useOffer';
+import { useShipping } from '../../../hooks/useShipping';
 
 export default function useConfirmOrder() {
-    const { ProductData, cartIds, setCartIds, getProdectData, trackPurchase } = useContext(cartcontext);
-    const { updateProduct, offersList, shippingList } = useContext(supbasecontext);
+    const { ProductData, cartIds, setCartIds, trackPurchase, getProductData } = useCartStore();
+    const { data: offersList } = useOffer();
+    const { data: shippingList } = useShipping();
 
     // 1. Location Selection & Shipping Logic
     const {
@@ -24,7 +25,7 @@ export default function useConfirmOrder() {
         msarefElchange, longOfCharge,
         governorateOptions, centerOptions, areaOptions,
         getShippingDetails
-    } = useLocationSelection(shippingList);
+    } = useLocationSelection(shippingList || []);
 
     const schemaResolver = useMemo(() => zodResolver(getDynamicSchema(areaOptions?.length > 0)), [areaOptions?.length]);
 
@@ -66,9 +67,9 @@ export default function useConfirmOrder() {
     useEffect(() => {
         window.scroll({ top: 0 });
         if (ProductData.length === 0 && Object.keys(cartIds).length > 0) {
-            getProdectData();
+            getProductData();
         }
-    }, []);
+    }, [ProductData.length, cartIds, getProductData]);
 
     // 3. Price, Discount & Weight Calculations
     const {
@@ -77,7 +78,7 @@ export default function useConfirmOrder() {
         totalPrice,
         discountData,
         totalPriceAfterDicount
-    } = usePriceCalculations(ProductData, offersList, selectedCenter);
+    } = usePriceCalculations(ProductData, offersList || [], selectedCenter);
 
     // 4. Order Submission Layer
     const {
@@ -90,7 +91,6 @@ export default function useConfirmOrder() {
         cartIds,
         setCartIds,
         trackPurchase,
-        updateProduct,
         selectedGovernorate,
         selectedCenter,
         getShippingDetails,

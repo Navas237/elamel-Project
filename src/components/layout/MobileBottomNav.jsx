@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { cartcontext } from '../../context/CartCotext';
+import { useCartStore } from '../../store/useCartStore';
 import { IconHome, IconOrders, IconPhone, IconCart } from '../../lib/icons';
 
 function MobileBottomNav() {
-  const { cartIds } = useContext(cartcontext);
+  const { cartIds = {} } = useCartStore();
   const location = useLocation();
 
-  const totalItems = Object.values(cartIds).reduce((acc, qty) => acc + qty, 0);
+  const totalItems = Object.values(cartIds || {}).reduce((acc, qty) => acc + qty, 0);
 
   const scrollHome = (e) => {
     if (location.pathname === '/') {
@@ -17,10 +17,10 @@ function MobileBottomNav() {
   };
 
   const navItems = [
-    { label: 'الرئيسية', to: '/', icon: IconHome, onClick: scrollHome },
-    { label: 'طلباتي', to: '/myorder', icon: IconOrders },
-    { label: 'السلة', to: '/cart', icon: IconCart, count: totalItems },
     { label: 'تواصل معنا', href: '#contact', icon: IconPhone },
+    { label: 'السلة', to: '/cart', icon: IconCart, count: totalItems },
+    { label: 'طلباتي', to: '/myorder', icon: IconOrders },
+    { label: 'الرئيسية', to: '/', icon: IconHome, onClick: scrollHome },
   ];
 
   return (

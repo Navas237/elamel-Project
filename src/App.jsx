@@ -1,8 +1,12 @@
 import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
-import { lazy, Suspense, useContext, useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import Lottie from "lottie-react";
 import Loadunglotie from '../src/assets/lotiefiles/Loading animation blue.json';
 import Errorlotie from '../src/assets/lotiefiles/Errorlotie.json';
+import toast, { Toaster } from 'react-hot-toast';
+import ScrollToTop from './ScrollToTop';
+import { useHeaderImages } from './hooks/useHeaderImages';
+import Button from './components/common/ui/Button';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const Layout = lazy(() => import('./components/layout/MainLayout'));
@@ -10,29 +14,17 @@ const SelectLang = lazy(() => import('./components/features/SelectLang/SelcectLa
 const Books = lazy(() => import('./pages/products/Books'));
 const Cart = lazy(() => import('./pages/cart/Cart'));
 const Elsafe = lazy(() => import('./components/features/Elsafe/Elsafe'));
-const ConfirmOrder = lazy(() => import('./pages/ConfirmOrder/ConfirmOrder'));
+const ConfirmOrder = lazy(() => import('./pages/ConfirmOrder/ConfirmOrderNew'));
 const SingleProduct = lazy(() => import('./pages/SingleProduct/SingleProduct'));
 const MyOrders = lazy(() => import('./pages/myOrders/MyOrders'));
 const SelectType = lazy(() => import('./components/features/SelectType/SelectType'));
-import toast, { Toaster } from 'react-hot-toast';
-import ProtuctedRoute from './pages/myOrders/ProtuctedRoute';
+const NonEduProducts = lazy(() => import('./pages/NonEduProducts/NonEduProducts'));
 import ProtectedRoute from './pages/ConfirmOrder/ProtectedRoute';
-import ScrollToTop from './ScrollToTop';
-import { supbasecontext } from './context/SupbaseContext';
-import Button from './components/common/ui/Button';
-
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
 const FB_PIXEL_ID = '1154855260177771';
 
-const queryClient = new QueryClient()
-
 function App() {
-  const { areHeaderImagesReady, getImgHeader, headerImages } = useContext(supbasecontext);
-
-  useEffect(() => {
-    getImgHeader();
-  }, [getImgHeader]);
+  const { isLoading: headerLoading } = useHeaderImages();
 
   useEffect(() => {
     if (!FB_PIXEL_ID || FB_PIXEL_ID === 'YOUR_PIXEL_ID') {
@@ -108,7 +100,6 @@ function App() {
         path: '/',
         element: (
           <Suspense fallback={handelLoadingloite()}>
-
             <Layout />
             <ScrollToTop />
           </Suspense>
@@ -124,27 +115,23 @@ function App() {
           { path: '/singleprodeuct/:id', element: <SingleProduct /> },
           {
             path: '/myorder',
-            element: (
-
-              <MyOrders />
-
-            )
+            element: <MyOrders />
           },
+          { path: '/t/:categorySlug/:subCategorySlug', element: <NonEduProducts /> },
+          { path: '/t', element: <NonEduProducts /> },
         ],
         errorElement: handelErrorloite()
       },
     ],
   );
 
-  if (!areHeaderImagesReady) {
+  if (headerLoading) {
     return handelLoadingloite();
   }
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      </QueryClientProvider>
       <Toaster
         containerStyle={{
           zIndex: 99999999,
@@ -153,7 +140,5 @@ function App() {
     </>
   );
 }
-
-
 
 export default App;

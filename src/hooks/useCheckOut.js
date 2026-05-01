@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { supabase } from '../services/SupabaseClient';
 import { useMinimum } from './useMinmum';
+import { useCartStore } from '../store/useCartStore';
 
-export const useCheckOut = ({ cartIds, setCartIds, ProductData, setProductData, totalPriceAfterDicount }) => {
+export const useCheckOut = ({ totalPriceAfterDicount }) => {
     const [isCheckingOut, setIsCheckingOut] = useState(false);
     const navigate = useNavigate();
+    const { cartIds, setCartIds, ProductData, setProductData } = useCartStore();
+
+    const { checkMinimum } = useMinimum();
 
     const handleCheckout = useCallback(async (e) => {
         e?.preventDefault();
@@ -27,12 +31,9 @@ export const useCheckOut = ({ cartIds, setCartIds, ProductData, setProductData, 
 
             if (error) throw error;
 
-            // Check minimum order amount using the existing useMinimum function
-            const minimum = useMinimum(totalPriceAfterDicount());
-            if (!minimum) return;
+            const isValid = checkMinimum(totalPriceAfterDicount());
+            if (!isValid) return;
 
-            // Vulnerability Fix: Validate inventory against the requested quantities
-            // Before, it only checked if stoke <= 0. Now it also checks if ordered quantity > stoke
             const outOfStockItems = [];
             const insufficientStockItems = [];
 
@@ -59,9 +60,8 @@ export const useCheckOut = ({ cartIds, setCartIds, ProductData, setProductData, 
                 });
 
                 setCartIds(newCartIds);
-                localStorage.setItem('cartIdes', JSON.stringify(newCartIds));
 
-                // Update ProductData state to reflect these realistic inventory changes
+                // Update ProductData state
                 const updatedProductCart = ProductData.filter(item =>
                     !outOfStockItems.some(osi => osi.id === item.id)
                 ).map(item => {
@@ -74,7 +74,6 @@ export const useCheckOut = ({ cartIds, setCartIds, ProductData, setProductData, 
 
                 setProductData(updatedProductCart);
 
-                // Build a combined warning message for the user based on the scenario
                 let alertText = '';
                 if (outOfStockItems.length > 0) {
                     const removedNames = outOfStockItems.map(i => i.name).join(' و ');
@@ -96,7 +95,6 @@ export const useCheckOut = ({ cartIds, setCartIds, ProductData, setProductData, 
                     }
                 });
             } else {
-                // If everything is perfectly in stock
                 navigate('/confirmorder');
             }
 
@@ -106,7 +104,7 @@ export const useCheckOut = ({ cartIds, setCartIds, ProductData, setProductData, 
         } finally {
             setIsCheckingOut(false);
         }
-    }, [cartIds, setCartIds, ProductData, setProductData, totalPriceAfterDicount, navigate]);
+    }, [cartIds, setCartIds, ProductData, setProductData, totalPriceAfterDicount, navigate, checkMinimum]);
 
     return { isCheckingOut, handleCheckout };
 };

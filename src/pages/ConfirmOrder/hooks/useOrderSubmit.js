@@ -2,13 +2,13 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { supabase } from '../../../services/SupabaseClient';
+import { updateProduct } from '../../../services/productService';
 
 export default function useOrderSubmit(
     ProductData,
     cartIds,
     setCartIds,
     trackPurchase,
-    updateProduct,
     selectedGovernorate,
     selectedCenter,
     getShippingDetails,
@@ -20,6 +20,9 @@ export default function useOrderSubmit(
 ) {
     const [confirmOrderLoading, setconfirmOrderLoading] = useState(false);
     const [orderForInvoice, setOrderForInvoice] = useState(null);
+
+    // console.log(increasWight);
+    
 
     const navigate = useNavigate();
     const purchaseTrackedRef = useRef(false);
@@ -65,17 +68,16 @@ export default function useOrderSubmit(
         setOrderForInvoice(orderData);
         await new Promise(resolve => setTimeout(resolve, 800));
 
-        // if (invoiceRef.current && orderData.order_num) {
-        //     try {
-        //         const imageData = await invoiceRef.current.generateInvoiceImage();
-        //         if (imageData) {
-        //             await uploadInvoiceToStorage(orderData.order_num, imageData);
-        //             // console.log('✅ Invoice generated and uploaded before order completion');
-        //         }
-        //     } catch (err) {
-        //         console.error('❌ Invoice generation error:', err);
-        //     }
-        // }
+        if (invoiceRef.current && orderData.order_num) {
+            try {
+                const imageData = await invoiceRef.current.generateInvoiceImage();
+                if (imageData) {
+                    await uploadInvoiceToStorage(orderData.order_num, imageData);
+                }
+            } catch (err) {
+                console.error('❌ Invoice generation error:', err);
+            }
+        }
     };
 
     const getformData = async (data) => {
@@ -84,7 +86,10 @@ export default function useOrderSubmit(
         const extraWeight = Math.ceil(Number(increasWight));
         const deliveryDuration = shippingDetails.duration.trim();
         const currentDiscount = Number(totalPrice) - Number(totalPriceAfterDicount());
-        const NetTotal = totalPriceAfterDicount() + shippingCost + Number(increasWight);
+        const NetTotal = Math.ceil(totalPriceAfterDicount() + shippingCost + Number(increasWight));
+        // console.log(NetTotal, 'NetTotal');
+        // console.log(shippingCost, 'shippingCost');
+        // console.log(totalPriceAfterDicount(), 'total');
 
         const orderData = {
             ...data,
@@ -131,11 +136,8 @@ export default function useOrderSubmit(
                 if (error) {
                     console.error("❌ Order insert failed:", error);
                     setconfirmOrderLoading(false);
+                    isSubmittingRef.current = false;
                     return;
-                }
-
-                if (insertedData?.[0]) {
-                    await generateInvoiceImage(insertedData[0]);
                 }
 
                 for (const order of insertedData) {
@@ -164,13 +166,19 @@ export default function useOrderSubmit(
                 localStorage.setItem('cartIdes', JSON.stringify({}));
 
                 Swal.fire({
-                    title: "تمام كدا الاوردر اتسجل ✅",
-                    html: deliveryDuration ? `<p>${deliveryDuration}</p>` : undefined,
+                    title: "تمام كدا الأوردر اتسجل",
+                    html: deliveryDuration ? `<p class="font-bold">${deliveryDuration}</p> 
+                    <p class=""> يرجي ترك الهاتف متاح خلال فتره الشحن</p>` : undefined,
                     icon: "success",
-                    showConfirmButton: false,
+                    showConfirmButton: true,
+                    confirmButtonText: "طلباتي ",
+                    confirmButtonColor: "var(--teal-500)",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate('/myorder');
+                    }
                 });
 
-                navigate('/myorder');
                 setconfirmOrderLoading(false);
 
             } catch (err) {

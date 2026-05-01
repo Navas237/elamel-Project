@@ -1,33 +1,37 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getItemDiscount } from '../../../../utils/discountUtils';
-import { supbasecontext } from '../../../../context/SupbaseContext';
 import getOptimizedImage from '../../../../hooks/useOptimizedImage';
+import { useOffer } from '../../../../hooks/useOffer';
+import { useCartStore } from '../../../../store/useCartStore';
 import {
   IconLoading, IconCheck, IconCart, IconBook, IconFlame,
 } from '../../../../lib/icons';
 
 /* ── Brand tokens ─────────────────────────────────────────── */
-const TEAL     = 'var(--gradient-brand)';
-const GOLD_BG  = { background: 'linear-gradient(135deg,var(--brand-accent),var(--brand-accent-dark))' };
-const TEAL_SOFT = { background: 'var(--color-surface-muted)', color: 'var(--teal-500)' };
+const TEAL = 'var(--gradient-brand)';
+const GOLD_BG = { background: 'linear-gradient(135deg,var(--brand-accent),var(--brand-accent-dark))' };
 
-function BookItem({ value, cartIds, cartloading, getIds, index, trackAddToCart }) {
-  const { offersList } = useContext(supbasecontext);
-  const [isLoaded,     setIsLoaded]     = useState(false);
-  const [clickCoords,  setClickCoords]  = useState(null);
-  const [showFly,      setShowFly]      = useState(false);
+function BookItem({ value, index, isSingleProduct = false }) {
+  const { data: offersList } = useOffer();
+  const { cartIds, cartloading, addToCart } = useCartStore();
+  
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [clickCoords, setClickCoords] = useState(null);
+  const [showFly, setShowFly] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
 
-  const isInCart     = !!cartIds[value.id];
-  const isLoading    = !!cartloading[value.id];
-  const isOutOfStock = value.stoke <= 0 || cartIds[value.id] == value.stoke;
+  const isInCart = !!cartIds[value.id];
+  const isLoading = !!cartloading[value.id];
+  const isOutOfStock = value.stoke <= 0 || (cartIds[value.id] >= value.stoke);
 
-  const discountInfo = useMemo(() => getItemDiscount(value, offersList), [value, offersList]);
-  const priceAfter   = Math.ceil(value.price - discountInfo.amount);
-  const imageSrc     = getOptimizedImage(value.image) || null;
+  const discountInfo = useMemo(() => getItemDiscount(value, offersList || []), [value, offersList]);
+  const priceAfter = Math.ceil(value.price - discountInfo.amount);
+  const imageSrc = getOptimizedImage(value.image) || null;
 
   const handleAddToCart = (e) => {
+    if (isOutOfStock || isLoading || showFly) return;
+    
     setShowFly(false);
     requestAnimationFrame(() => {
       setClickCoords({ x: e.clientX, y: e.clientY });
@@ -35,23 +39,23 @@ function BookItem({ value, cartIds, cartloading, getIds, index, trackAddToCart }
       setShowFly(true);
       setTimeout(() => {
         setShowFly(false);
-        getIds(value.id, value.stoke);
+        addToCart(value.id, value.stoke, value);
       }, 600);
     });
   };
 
   return (
-    <div className="group relative bg-white rounded-xl md:rounded-2xl shadow-sm md:shadow-md hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100 flex flex-col h-auto mt-4 md:mt-8">
+    <div className={`group relative bg-white rounded-xl md:rounded-2xl shadow-sm md:shadow-md hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100 flex flex-col h-auto mt-4 md:mt-8  ${isSingleProduct ? ' flex flex-col md:flex-row max-w-2xl mx-auto ' : ''}`}>
 
       {/* ── Image ──────────────────────────────────────────── */}
-      <div className={`relative h-52 sm:h-64 md:h-90 lg:h-100 overflow-hidden bg-gray-50 flex items-center justify-center ${isOutOfStock ? 'opacity-70' : ''}`}>
+      <div className={`relative ${isSingleProduct ? 'h-90 sm:h-100 md:h-130 md:w-[60%]' : 'h-48 sm:h-60 md:h-90 lg:h-70'} overflow-hidden bg-gray-50 flex items-center justify-center ${isOutOfStock ? 'opacity-70' : ''}`}>
         {imageSrc ? (
           <img
             src={imageSrc}
             alt={`${value.company || 'كتاب'} - ${value.name || ''}`}
             loading={index < 4 ? 'eager' : 'lazy'}
             onLoad={() => setIsLoaded(true)}
-            className={`w-full h-full object-cover transition duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${!isOutOfStock ? 'group-hover:scale-105' : ''}`}
+            className={`w-full h-full object-cover transition duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${!isOutOfStock ? 'group-hover:scale-105' : ''}`} 
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center" style={{ color: 'var(--teal-400)' }}>
@@ -90,7 +94,7 @@ function BookItem({ value, cartIds, cartloading, getIds, index, trackAddToCart }
       </div>
 
       {/* ── Details ────────────────────────────────────────── */}
-      <div className="p-2 md:p-4 flex flex-col flex-grow gap-2 md:gap-3">
+      <div className={`p-2 md:p-4 flex flex-col flex-grow gap-2 md:gap-3  ${isSingleProduct ? 'md:w-[40%] md:justify-center md:mt-30' : ''}`}>
 
         {/* Title */}
         <h3 className="text-[16px] md:text-[20px] font-bold text-right min-h-[1.5rem] line-clamp-2 text-gray-800">
@@ -102,24 +106,26 @@ function BookItem({ value, cartIds, cartloading, getIds, index, trackAddToCart }
 
         {/* Price block */}
         <div className="flex flex-col gap-1 items-end p-2 md:p-3 rounded-lg md:rounded-xl bg-gray-50">
-          {/* Current price */}
           <div className="flex items-baseline gap-2">
+            <div className='flex  gap-1'>
+            <span className="font-bold text-[15px] md:text-xl" style={{ color: 'var(--teal-500)' }}>ج</span>
             <span className="font-extrabold text-[18px] md:text-2xl" style={{ color: 'var(--teal-500)' }}>
               {priceAfter}
             </span>
-            <span className="font-bold text-[15px] md:text-xl" style={{ color: 'var(--teal-500)' }}>ج</span>
+            </div>
             <span className="text-gray-500 text-[14px] md:text-[17px]">السعر</span>
           </div>
 
-          {/* Original price (strikethrough) */}
           {discountInfo.percentage > 0 && (
             <div className="flex items-baseline gap-2">
-              <del className="text-gray-400 text-[14px] md:text-[18px] font-medium">{value.price} ج</del>
+              <del className="text-gray-400 text-[14px]  flex  gap-1 md:text-[18px] font-medium">
+             <span> ج</span>   
+             <span> { value.price}  </span>
+              </del>
               <span className="text-gray-400 text-[13px] md:text-[16px]">بدلاً من</span>
             </div>
           )}
 
-          {/* Discount badge */}
           {discountInfo.percentage > 0 && (
             <div
               className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] md:text-sm font-bold text-gray-900 shadow-sm"
@@ -135,16 +141,24 @@ function BookItem({ value, cartIds, cartloading, getIds, index, trackAddToCart }
         <motion.button
           whileTap={!isLoading && !isOutOfStock && !showFly ? { scale: 0.92 } : {}}
           whileHover={!isLoading && !isOutOfStock && !showFly ? { scale: 1.02 } : {}}
-          className={`w-full h-[42px] md:h-[50px] mt-auto rounded-lg md:rounded-xl font-bold text-sm md:text-base flex items-center justify-center gap-2 transition duration-200 ${
-            isOutOfStock
-              ? 'bg-gray-100 text-gray-400 cursor-default'
-              : (isLoading || showFly)
-                ? 'opacity-70 cursor-not-allowed'
-                : 'cursor-pointer hover:-translate-y-0.5 hover:shadow-md'
-          }`}
-          style={!isOutOfStock ? { background: TEAL, color: '#fff' } : {}}
+          className={`w-full h-[42px] md:h-[50px] mt-auto rounded-lg md:rounded-xl font-bold text-sm md:text-base flex items-center justify-center gap-2 transition duration-200 ${isOutOfStock
+            ? 'bg-gray-100 text-gray-400 cursor-default'
+            : (isLoading || showFly)
+              ? 'opacity-70 cursor-not-allowed'
+              : 'cursor-pointer hover:-translate-y-0.5 hover:shadow-md'
+            }`}
+          style={
+            isOutOfStock ? {} :
+              isInCart ? {
+                background: 'linear-gradient(135deg, #FFFDF0 0%, #FFF1B8 100%)',
+                color: '#854D0E',
+                border: '1.5px solid #FFE082',
+                boxShadow: 'none'
+              } :
+                { background: TEAL, color: '#fff' }
+          }
           disabled={isLoading || isOutOfStock || showFly}
-          onClick={(e) => { handleAddToCart(e); trackAddToCart?.(value.id, 1, value); }}
+          onClick={handleAddToCart}
         >
           {(isLoading || showFly) ? (
             <IconLoading size={18} className="animate-spin" />

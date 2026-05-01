@@ -8,7 +8,7 @@ import { supabase } from "../services/SupabaseClient"
             queryFn : async () => {
             const { data, error } = await supabase
                 .from('shipping')
-                .select('*')
+                .select('id, governorate, shipping_cost, delivery_duration, centers')
 
             if (error) {
                 throw new Error(error.message);
@@ -16,5 +16,7 @@ import { supabase } from "../services/SupabaseClient"
 
             return data;
         },
+        staleTime: 24 * 60 * 60 * 1000,
+        retry: 2,
     });
  };

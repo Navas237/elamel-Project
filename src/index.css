@@ -169,10 +169,13 @@
   --color-info-border: var(--teal-400);
 }
 
-/* ── Base Reset ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
-body, html {
+html {
+  min-height: 100%;
+}
+
+body {
   font-family: var(--font-primary);
   font-weight: 400;
   background-color: var(--color-page-bg);
@@ -309,3 +312,7 @@ img { max-width: 100%; height: auto; }
   background-color: var(--brand-primary-dark) !important;
   border-color: var(--brand-primary-dark) !important;
 }
+
+/* Utility to hide scrollbars */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

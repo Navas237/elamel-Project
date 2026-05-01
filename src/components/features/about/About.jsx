@@ -126,7 +126,7 @@ function About() {
                    نقدم خدمة البيع الإلكتروني مع{' '}
                    <strong style={{ color: 'var(--teal-500)' }}>توصيل سريع وآمن</strong>{' '}
                    لجميع محافظات الجمهورية، وخصومات مميزة تصل إلى{' '}
-                   <strong className="text-2xl" style={{ color: 'var(--teal-400)' }}>15%</strong>.
+                   <strong className="text-2xl" style={{ color: 'var(--teal-400)' }}> %15  </strong>.
                  </p>
    
                  {/* Social CTAs */}

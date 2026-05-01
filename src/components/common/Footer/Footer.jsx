@@ -28,7 +28,7 @@ const quickLinks = [
 
 const services = [
   { label: 'توصيل سريع لجميع المحافظات', Icon: IconShipping },
-  { label: 'خصومات تصل إلى 15%',          Icon: IconDiscount },
+  { label: 'خصومات تصل إلى   % 15',          Icon: IconDiscount },
   { label: 'كتب أصلية جودة مضمونة',       Icon: IconCheck },
 ];
 
@@ -116,12 +116,14 @@ function Footer() {
           </div>
 
           {/* ③ Services ─────────────────────────────────── */}
-          <div className="flex flex-col items-end">
+          <div className="flex  flex-col items-end">
             <h4 className="font-bold text-base mb-4" style={headingStyle}>خدماتنا</h4>
             <ul className="space-y-2">
               {services.map(({ label, Icon }) => (
-                <li key={label} className="flex items-center gap-2 text-sm py-0.5" style={{ color: 'var(--gray-600)' }}>
-                  <Icon size={14} className="shrink-0" style={{ color: GOLD }} />
+                <li key={label} className="flex items-center gap-2 text-sm py-0.5" style={{ color: 'var(--gray-600)' }} 
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-500)'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'var(--gray-600)'}>
+                  <Icon size={14} className="shrink-0" style={{ color: 'var(--teal-400)' }}  />
                   <span>{label}</span>
                 </li>
               ))}
@@ -153,7 +155,7 @@ function Footer() {
                 onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-500)'}
                 onMouseLeave={e => e.currentTarget.style.color = 'var(--gray-700)'}
               >
-                <IconPhone size={14} style={{ color: GOLD }} />
+                <IconPhone size={14} style={{ color: 'var(--teal-400)' }}  />
                 <span dir="ltr">01069571111</span>
               </a>
             </div>
@@ -177,7 +179,7 @@ function Footer() {
           </p>
           <div className="flex items-center gap-1 text-xs" style={{ color: 'var(--gray-400)' }}>
             <span>صُنع بـ</span>
-            <IconHeart size={12} style={{ color: GOLD }} />
+            <IconHeart size={12} style={{ color: 'var(--teal-400)' }}  />
             <span>لطلاب مصر</span>
           </div>
         </div>

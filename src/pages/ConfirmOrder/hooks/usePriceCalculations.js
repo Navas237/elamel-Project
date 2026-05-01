@@ -1,8 +1,10 @@
 import { useState, useEffect, useMemo } from 'react';
 import { calculateDiscountData, calculateTotalPriceAfterDiscount } from '../../../utils/discountUtils';
+import { useIncreasingWeight } from '../../../hooks/useIncreasingWeight';
 
 export default function usePriceCalculations(ProductData, offersList, selectedCenter) {
     const [increasWight, setIncreasWight] = useState('');
+    const { calculateIncreaseWeight, weightRules } = useIncreasingWeight();
 
     const totalPrice = useMemo(() => {
         return ProductData?.reduce((a, b) => {
@@ -24,23 +26,13 @@ export default function usePriceCalculations(ProductData, offersList, selectedCe
 
     const increasWightt = (val) => {
         const check = val !== undefined ? val : selectedCenter;
-        if (check !== "الزقازيق") {
-            if (totalPrice) {
-                if (totalPrice < 1800) setIncreasWight(0);
-                else if (totalPrice < 2700) setIncreasWight(20);
-                else if (totalPrice < 3000) setIncreasWight(25);
-                else if (totalPrice < 4000) setIncreasWight(35);
-                else if (totalPrice < 5000) setIncreasWight(45);
-                else if (totalPrice > 5000) setIncreasWight(totalPrice * 2.3 / 100);
-            }
-        } else {
-            setIncreasWight(0);
-        }
+        const fee = calculateIncreaseWeight(totalPriceAfterDicount(), check);
+        setIncreasWight(fee);
     };
 
     useEffect(() => {
         increasWightt();
-    }, [totalPrice, selectedCenter]);
+    }, [totalPrice, selectedCenter, weightRules]);
 
     return {
         increasWight, setIncreasWight,

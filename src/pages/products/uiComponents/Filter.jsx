@@ -26,12 +26,12 @@ const selectStyles = {
   singleValue: (base) => ({ ...base, textAlign: 'right', fontWeight: '600', color: '#1F2937' }),
   indicatorSeparator: () => ({ display: 'none' }),
   dropdownIndicator: (base) => ({ ...base, color: '#9CA3AF', padding: '0 8px' }),
-  menu: (base) => ({ 
-    ...base, 
-    borderRadius: '12px', 
-    overflow: 'hidden', 
-    zIndex: 100, 
-    textAlign: 'right', 
+  menu: (base) => ({
+    ...base,
+    borderRadius: '12px',
+    overflow: 'hidden',
+    zIndex: 100,
+    textAlign: 'right',
     border: '1px solid #E5E7EB',
     boxShadow: '0 10px 25px rgba(0,0,0,0.05)',
     marginTop: '6px'
@@ -84,7 +84,7 @@ function Filter({ companyOptions, typebookOptions, selectedCompany, selectedType
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="sticky top-[58px] md:top-[62px] z-30 bg-white/80 backdrop-blur-lg py-3 px-3 mb-6 border-b border-gray-200/60 shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
+      className="sticky top-[90px] md:top-[62px] z-30 bg-white/80 backdrop-blur-lg py-3 px-3 mb-6 border-b border-gray-200/60 shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
     >
       <div className="flex flex-row-reverse items-center justify-center gap-3 max-w-4xl mx-auto">
         <div className="w-1/2 md:w-64">

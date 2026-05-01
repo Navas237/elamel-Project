@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { cartcontext } from '../../context/CartCotext';
-
+import { useCartStore } from '../../store/useCartStore';
 
 function ProtectedRoute({ children }) {
-    const { cartIds } = useContext(cartcontext);
+    const { cartIds } = useCartStore();
 
     if (Object.keys(cartIds).length !== 0) {
         return children;

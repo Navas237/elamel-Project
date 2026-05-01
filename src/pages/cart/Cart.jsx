@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import './Cart.css'
-import { cartcontext } from '../../context/CartCotext'
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom'
 import Lottie from 'lottie-react'
 import Loadunglotie from '../../assets/lotiefiles/loadingmain.json'
 import Errorloite from '../../assets/lotiefiles/Errorlotie.json'
 import { IoArrowBackOutline } from 'react-icons/io5'
-import { supbasecontext } from '../../context/SupbaseContext'
 import { calculateDiscountData, calculateTotalPriceAfterDiscount } from '../../utils/discountUtils'
 import { useCheckOut } from '../../hooks/useCheckOut'
 import { Button } from '../../components/common'
+import { useCartStore } from '../../store/useCartStore'
+import { useOffer } from '../../hooks/useOffer'
 
 // Cart sub-components
 import CartItem from './components/CartItem'
@@ -19,11 +19,11 @@ import PriceSummary from './components/PriceSummary'
 
 function Cart() {
     const {
-        getProdectData, cartIds, ProductData, setCartIds,
-        deletCart, Productloading, setProductData, ProductError
-    } = useContext(cartcontext)
+        cartIds, ProductData, removeFromCart, updateQuantity,
+        loading: Productloading, error: ProductError, getProductData
+    } = useCartStore()
 
-    const { offersList } = useContext(supbasecontext)
+    const { data: offersList } = useOffer()
 
     // ── Coupon state ──────────────────────────────────────────
     const [couponCode, setCouponCode] = useState('')
@@ -46,7 +46,7 @@ function Cart() {
     }, [ProductData, appliedCouponCode])
 
     // ── Data fetch ────────────────────────────────────────────
-    useEffect(() => { getProdectData() }, [])
+    useEffect(() => { getProductData() }, [getProductData])
 
     // ── Coupon handlers ───────────────────────────────────────
     const handleApplyCoupon = () => {
@@ -88,20 +88,13 @@ function Cart() {
                 Swal.fire('تنبيه', 'الكمية المطلوبة أكثر من المتوفر في المخزون', 'warning')
                 return
             }
-            setProductData(prev => prev.map(v => v.id === id ? { ...v, quantity: v.quantity + 1 } : v))
-            setCartIds(prev => {
-                const updated = { ...prev, [id]: (prev[id] || 0) + 1 }
-                localStorage.setItem('cartIdes', JSON.stringify(updated))
-                return updated
-            })
+            updateQuantity(id, item.quantity + 1)
         } else {
-            if (item.quantity === 1) { deletCart(item); return }
-            setProductData(prev => prev.map(v => v.id === id && v.quantity > 1 ? { ...v, quantity: v.quantity - 1 } : v))
-            setCartIds(prev => {
-                const updated = { ...prev, [id]: Math.max((prev[id] || 1) - 1, 1) }
-                localStorage.setItem('cartIdes', JSON.stringify(updated))
-                return updated
-            })
+            if (item.quantity === 1) { 
+              removeFromCart(id)
+              return 
+            }
+            updateQuantity(id, item.quantity - 1)
         }
     }
 
@@ -109,7 +102,7 @@ function Cart() {
     const totalPrice = ProductData?.reduce((acc, p) => acc + p.price * p.quantity, 0) ?? 0
 
     const discountData = useMemo(
-        () => calculateDiscountData(offersList, ProductData, totalPrice, appliedCouponCode),
+        () => calculateDiscountData(offersList || [], ProductData, totalPrice, appliedCouponCode),
         [offersList, ProductData, totalPrice, appliedCouponCode]
     )
 
@@ -117,7 +110,7 @@ function Cart() {
         calculateTotalPriceAfterDiscount(totalPrice, discountData.amount, false)
 
     const { isCheckingOut, handleCheckout } = useCheckOut({
-        cartIds, setCartIds, ProductData, setProductData, totalPriceAfterDicount
+        totalPriceAfterDicount
     })
 
     // ── Offer badges ──────────────────────────────────────────
@@ -140,7 +133,7 @@ function Cart() {
         <div className="min-h-screen" style={{ background: 'linear-gradient(180deg, var(--color-page-bg) 0%, var(--color-page-bg-soft) 100%)' }}>
 
             {/* Loading */}
-            {Productloading ? (
+            {Productloading && ProductData.length === 0 ? (
                 <div className="flex justify-center items-center min-h-[60vh]">
                     <Lottie animationData={Loadunglotie} className="w-[30%] max-w-xs" />
                 </div>
@@ -197,7 +190,7 @@ function Cart() {
                                 key={item.id}
                                 item={item}
                                 discountData={discountData}
-                                onDelete={() => deletCart(item)}
+                                onDelete={() => removeFromCart(item.id)}
                                 onPlus={() => changeCount(item.id, 'plus')}
                                 onMinus={() => changeCount(item.id, 'menus')}
                             />
@@ -222,7 +215,7 @@ function Cart() {
                                 key={item.id}
                                 item={item}
                                 discountData={discountData}
-                                onDelete={() => deletCart(item)}
+                                onDelete={() => removeFromCart(item.id)}
                                 onPlus={() => changeCount(item.id, 'plus')}
                                 onMinus={() => changeCount(item.id, 'menus')}
                             />

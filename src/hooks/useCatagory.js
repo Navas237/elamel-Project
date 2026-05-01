@@ -8,8 +8,8 @@ export function useCatagory(){
         queryFn : async () => {
             const { data, error } = await supabase
                 .from('categories')
-                .select('*')
-                // .order('created_at', { ascending: false });
+                .select('id, name,  order, type, slug, grades(id, name, slug, category_id)')
+                .order('order', { ascending: true });
 
             if (error) {
                 throw new Error(error.message);
@@ -17,5 +17,6 @@ export function useCatagory(){
 
             return data;
         },
+        staleTime: 24 * 60 * 60 * 1000,
     });
 }

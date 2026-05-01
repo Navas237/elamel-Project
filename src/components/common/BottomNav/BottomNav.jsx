@@ -16,7 +16,7 @@ function BottomNav({ children }) {
 
   return (
     <div
-      className="BottomNav h-[58px] flex items-center w-full border-t"
+      className="BottomNav h-[80px] pt-6 shadow-3xl flex items-center w-full border-t"
       style={{ background: 'var(--color-bottomnav)', borderColor: '#cccccc', boxShadow: '0 -2px 10px rgba(0,0,0,0.05)' }}
     >
       <div className="flex items-center px-4 gap-3 w-full h-full">

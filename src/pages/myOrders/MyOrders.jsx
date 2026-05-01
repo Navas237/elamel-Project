@@ -55,7 +55,7 @@ export function MyOrders() {
         <div className="space-y-5">
           {orders.map((order, idx) => {
             const { orderDetils } = order;
-            const discountPct = getDiscountPercent(Number(orderDetils.totalPrice));
+            const discountPct =  (Number(orderDetils.totalPrice));
             const finalTotal  = Math.ceil(
               Number(orderDetils.priceAfterDiscount) +
               Number(orderDetils.shipping) +
@@ -129,7 +129,7 @@ export function MyOrders() {
                     <span>🚚 الشحن</span>
                   </div>
 
-                  {orderDetils.extraWeight && Number(orderDetils.extraWeight) > 0 && (
+                  {Number(orderDetils.extraWeight || 0) > 0 && (
                     <div className="flex justify-between text-orange-500">
                       <Egp value={Math.ceil(Number(orderDetils.extraWeight))} />
                       <span>⚖️ رسوم زيادة الوزن</span>

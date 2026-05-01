@@ -18,5 +18,6 @@ export const useOffer = () => {
 
             return data;
         },
+        staleTime: 5 * 60 * 1000,
     });
  };

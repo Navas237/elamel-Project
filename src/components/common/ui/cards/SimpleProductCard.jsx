@@ -7,24 +7,24 @@ import {
   IconLoading, IconCheck, IconCart, IconPackage, IconFlame,
 } from '../../../../lib/icons';
 
-const TEAL     = 'var(--gradient-brand)';
-const GOLD_BG  = { background: 'linear-gradient(135deg,var(--brand-accent),var(--brand-accent-dark))' };
+const TEAL = 'var(--gradient-brand)';
+const GOLD_BG = { background: 'linear-gradient(135deg,var(--brand-accent),var(--brand-accent-dark))' };
 
 function SimpleProductCard({ value, cartIds, cartloading, getIds, index, trackAddToCart }) {
   const { offersList } = useContext(supbasecontext);
-  const [isLoaded,     setIsLoaded]     = useState(false);
-  const [clickCoords,  setClickCoords]  = useState(null);
-  const [showFly,      setShowFly]      = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [clickCoords, setClickCoords] = useState(null);
+  const [showFly, setShowFly] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
 
-  const isInCart     = !!cartIds[value.id];
-  const isLoading    = !!cartloading[value.id];
+  const isInCart = !!cartIds[value.id];
+  const isLoading = !!cartloading[value.id];
   const isOutOfStock = value.stoke <= 0 || cartIds[value.id] == value.stoke;
 
   // Uses existing discount util if applicable to standard products
   const discountInfo = useMemo(() => getItemDiscount(value, offersList), [value, offersList]);
-  const priceAfter   = Math.ceil(value.price - discountInfo.amount);
-  const imageSrc     = getOptimizedImage(value.image) || null;
+  const priceAfter = Math.ceil(value.price - discountInfo.amount);
+  const imageSrc = getOptimizedImage(value.image) || null;
 
   const handleAddToCart = (e) => {
     setShowFly(false);
@@ -40,7 +40,7 @@ function SimpleProductCard({ value, cartIds, cartloading, getIds, index, trackAd
   };
 
   return (
-    <div className="group relative bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_24px_rgba(78,196,189,0.12)] transition duration-300 overflow-hidden border border-gray-100 flex flex-col h-auto mt-4">
+    <div className="group relative  bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_24px_rgba(78,196,189,0.12)] transition duration-300 overflow-hidden border border-gray-100 flex flex-col h-auto mt-4">
       {/* ── Image ──────────────────────────────────────────── */}
       <div className={`relative h-48 sm:h-56 md:h-64 overflow-hidden bg-gray-50 flex items-center justify-center p-4 ${isOutOfStock ? 'opacity-70' : ''}`}>
         {imageSrc ? (
@@ -86,7 +86,7 @@ function SimpleProductCard({ value, cartIds, cartloading, getIds, index, trackAd
           {value.name}
         </h3>
         {value.company && (
-           <p className="text-sm font-medium text-gray-500">{value.company}</p>
+          <p className="text-sm font-medium text-gray-500">{value.company}</p>
         )}
 
         {/* Price block */}
@@ -97,12 +97,12 @@ function SimpleProductCard({ value, cartIds, cartloading, getIds, index, trackAd
           </div>
 
           {discountInfo.percentage > 0 && (
-             <div className="flex items-center gap-2">
-                <del className="text-gray-400 text-sm">{value.price} ج</del>
-                <div className="flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold text-gray-900" style={GOLD_BG}>
-                  <IconFlame size={12} /> وفر {discountInfo.amount}
-                </div>
-             </div>
+            <div className="flex items-center gap-2">
+              <del className="text-gray-400 text-sm">{value.price} ج</del>
+              <div className="flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold text-gray-900" style={GOLD_BG}>
+                <IconFlame size={12} /> وفر {discountInfo.amount}
+              </div>
+            </div>
           )}
         </div>
 
@@ -110,10 +110,18 @@ function SimpleProductCard({ value, cartIds, cartloading, getIds, index, trackAd
         <motion.button
           whileTap={!isLoading && !isOutOfStock && !showFly ? { scale: 0.95 } : {}}
           whileHover={!isLoading && !isOutOfStock && !showFly ? { scale: 1.02 } : {}}
-          className={`w-full h-11 md:h-12 mt-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition duration-200 ${
-            isOutOfStock ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : (isLoading || showFly) ? 'opacity-70 cursor-wait' : 'cursor-pointer shadow-sm hover:shadow-md'
-          }`}
-          style={!isOutOfStock ? { background: TEAL, color: '#fff' } : {}}
+          className={`w-full h-11 md:h-12 mt-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition duration-200 ${isOutOfStock ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : (isLoading || showFly) ? 'opacity-70 cursor-wait' : 'cursor-pointer shadow-sm hover:shadow-md'
+            }`}
+          style={
+            isOutOfStock ? {} :
+              isInCart ? {
+                background: 'linear-gradient(135deg, #FFFDF0 0%, #FFF1B8 100%)',
+                color: '#854D0E',
+                border: '1.5px solid #FFE082',
+                boxShadow: 'none'
+              } :
+                { background: TEAL, color: '#fff' }
+          }
           disabled={isLoading || isOutOfStock || showFly}
           onClick={(e) => { handleAddToCart(e); trackAddToCart?.(value.id, 1, value); }}
         >

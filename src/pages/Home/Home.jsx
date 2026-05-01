@@ -8,13 +8,13 @@ import { useCatagory } from '../../hooks/useCatagory';
 import About from '../../components/features/about/About';
 
 function Home() {
-  const { data: categories, isLoading, error } = useCatagory();
+  const { data: categories, isLoading } = useCatagory();
 
   useEffect(() => {
     window.scroll({ top: 0 });
   }, []);
 
-  const otherCategories = categories?.filter((cat) => cat.books === false) || [];
+  const toolCategories = categories?.filter((cat) => cat.type === 'tools') || [];
 
   return (
     <div>
@@ -22,8 +22,8 @@ function Home() {
       <CategoryScroll />
       <Category />
       
-      {/* Render Sections for Non-Book Categories */}
-      {otherCategories.map((category) => (
+      {/* Render Sections for Tool Categories */}
+      {toolCategories.map((category) => (
         <OtherCategorySection key={category.id} category={category} />
       ))}
 

@@ -1,22 +1,15 @@
-import React, { useContext, useEffect } from "react";
-
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-
-
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { supbasecontext } from "../src/context/SupbaseContext";
+import { useHeaderImages } from "../src/hooks/useHeaderImages";
 
 function MySwiper() {
-  const { headerImages } = useContext(supbasecontext);
-
-
-
+  const { data: headerImages } = useHeaderImages();
+  const images = headerImages || [];
 
   return (
     <div style={{ width: "100%", margin: "auto", marginBottom: "0px" }} id='home'>
@@ -24,7 +17,7 @@ function MySwiper() {
         modules={[Autoplay, Navigation, Pagination]}
         spaceBetween={30}
         slidesPerView={1}
-        loop={true}
+        loop={images.length > 1}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
@@ -36,8 +29,8 @@ function MySwiper() {
           width: "100%",
         }}
       >
-        {headerImages.length > 0 && (
-          headerImages.map((img) => (
+        {images.length > 0 && (
+          images.map((img) => (
             <SwiperSlide key={img.id}>
               <img
                 src={img.imgUrl}
@@ -47,8 +40,6 @@ function MySwiper() {
             </SwiperSlide>
           ))
         )}
-
-
       </Swiper>
     </div>
   );

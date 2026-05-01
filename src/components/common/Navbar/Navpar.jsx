@@ -54,7 +54,8 @@ function Navpar() {
   };
 
   const mobileLinks = [
-    { label: 'الرئيسية', to: '/',         icon: IconHome,     onClick: scrollHome },
+    { label: 'الرئيسية', to: '/',         icon: IconHome,       },  
+    { label: 'السلة', to: '/cart',         icon: IconCart,       },
     { label: 'طلباتي',   to: '/myorder',  icon: IconOrders },
     { label: 'واتساب',   href: 'https://api.whatsapp.com/send?phone=201069571111', icon: IconWhatsapp },
     { label: 'فيسبوك',   href: 'https://www.facebook.com/Amaleducationalstore?locale=ar_AR', icon: IconFacebook },
@@ -148,12 +149,7 @@ function Navpar() {
 
           {/* RIGHT — Desktop links */}
           <div className="hidden sm:flex items-center gap-4 lg:gap-5">
-            <Link to={location.pathname === '/' ? '#home' : '/#home'} onClick={scrollHome}
-              className={navCls} style={{ color: 'var(--teal-600)' }}
-              onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-400)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'var(--teal-600)'}>
-              <IconHome size={18} /><span>الرئيسية</span>
-            </Link>
+         
             <a href="#contact" className={navCls}
               style={{ color: 'var(--teal-600)' }}
               onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-400)'}
@@ -165,6 +161,19 @@ function Navpar() {
               onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-400)'}
               onMouseLeave={e => e.currentTarget.style.color = 'var(--teal-600)'}>
               <IconOrders size={18} /><span>طلباتي</span>
+            </Link>
+
+               <Link to="/cart"
+              className={navCls} style={{ color: 'var(--teal-600)' }}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-400)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--teal-600)'}>
+              <IconCart size={18} /><span>السلة</span>
+            </Link>
+               <Link to={location.pathname === '/' ? '#home' : '/#home'} onClick={scrollHome}
+              className={navCls} style={{ color: 'var(--teal-600)' }}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--teal-400)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--teal-600)'}>
+              <IconHome size={18} /><span>الرئيسية</span>
             </Link>
           </div>
         </div>
